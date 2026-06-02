@@ -9,7 +9,40 @@
 <meta property="og:description" content="Cellist · Founder, Beitan Music Foundation · Lugano" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://maxbeitan.com" />
-<meta property="og:image" content="img/studio-tux-direct.jpg" />
+<meta property="og:image" content="https://maxbeitan.com/img/studio-tux-direct.jpg" />
+<meta property="og:image:alt" content="Max Beitan, cellist" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Max Beitan" />
+<meta name="twitter:description" content="Cellist · Founder, Beitan Music Foundation · Lugano" />
+<meta name="twitter:image" content="https://maxbeitan.com/img/studio-tux-direct.jpg" />
+<meta name="theme-color" content="#0C0B0E" />
+<link rel="icon" type="image/svg+xml" href="img/mb-monogram.svg" />
+<link rel="icon" type="image/png" sizes="48x48" href="img/favicon-48.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="img/favicon-96.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="img/favicon-192.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="img/favicon-180.png" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Max Beitan",
+  "alternateName": "Maksims Beitāns",
+  "jobTitle": "Cellist",
+  "description": "Latvian cellist, composer and founder of the Beitan Music Foundation. Performances on Stradivari instruments; advisory on rare Italian instruments and cultural asset stewardship.",
+  "url": "https://maxbeitan.com",
+  "image": "https://maxbeitan.com/img/studio-tux-direct.jpg",
+  "nationality": "Latvian",
+  "homeLocation": { "@type": "Place", "name": "Lugano, Switzerland" },
+  "knowsAbout": ["Cello", "Stradivari instruments", "Chamber music", "Rare Italian instruments", "Cultural asset advisory"],
+  "worksFor": { "@type": "Organization", "name": "Beitan Music Foundation", "url": "https://maxbeitan.com" },
+  "sameAs": [
+    "https://www.youtube.com/c/MaxBeitan",
+    "https://www.instagram.com/maxbeitan/",
+    "https://www.facebook.com/BeitanMaxim",
+    "https://en.wikipedia.org/wiki/Max_Beitan"
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet" />
@@ -653,6 +686,121 @@
     .stage .sub { font-size: 9px; letter-spacing: .2em; }
     .stage .sub span { margin: 0 8px; }
   }
+
+  /* ── Concert calendar ───────────────────────── */
+  .calendar { padding: 12vh 6vw; border-top: 1px solid var(--rule); }
+  .cal-list { max-width: var(--maxw); margin: 48px auto 0; }
+  .cal-row {
+    display: grid; grid-template-columns: 150px 1fr;
+    align-items: baseline; gap: 36px;
+    padding: 30px 0; border-bottom: 1px solid var(--rule);
+  }
+  .cal-row:first-child { border-top: 1px solid var(--rule); }
+  .cal-date {
+    font-family: var(--sans); font-weight: 300; font-size: 10.5px;
+    letter-spacing: .26em; text-transform: uppercase; color: var(--accent);
+    line-height: 1.4;
+  }
+  .cal-date b {
+    display: block; font-family: var(--serif); font-style: italic; font-weight: 500;
+    font-size: 34px; letter-spacing: .01em; color: var(--text); text-transform: none;
+  }
+  .cal-main h3 {
+    font-family: var(--serif); font-weight: 400; font-size: clamp(22px, 2.1vw, 29px);
+    line-height: 1.18; color: var(--text); text-wrap: pretty;
+  }
+  .cal-main .venue {
+    margin-top: 9px; font-family: var(--sans); font-weight: 300; font-size: 10.5px;
+    letter-spacing: .16em; color: var(--muted); text-transform: uppercase;
+  }
+  @media (max-width: 760px){
+    .cal-row { grid-template-columns: 1fr; gap: 8px; padding: 24px 0; }
+    .cal-date b { font-size: 28px; }
+  }
+
+  /* ── Video ──────────────────────────────────── */
+  .video-frame {
+    max-width: 980px; margin: 0 auto 46px; position: relative;
+    aspect-ratio: 16 / 9; border: 1px solid var(--rule-2);
+    background: #000; overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,.5);
+  }
+  .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .yt-facade {
+    position: absolute; inset: 0; width: 100%; height: 100%; border: 0; cursor: pointer;
+    padding: 0; background-color: #000; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .yt-thumb { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .yt-facade::after { content: ""; position: absolute; inset: 0; background: rgba(12,11,14,.30); transition: background .4s ease; }
+  .yt-play {
+    position: relative; z-index: 1; width: 84px; height: 84px; border-radius: 50%;
+    background: rgba(194,162,105,.92); display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 12px 44px rgba(0,0,0,.5); transition: transform .45s cubic-bezier(.2,.7,.2,1), background .3s ease;
+  }
+  .yt-facade:hover::after { background: rgba(12,11,14,.14); }
+  .yt-facade:hover .yt-play { transform: scale(1.07); background: var(--accent); }
+  .yt-tri { width: 0; height: 0; border-style: solid; border-width: 13px 0 13px 22px; border-color: transparent transparent transparent #0C0B0E; margin-left: 5px; }
+
+  /* ── Press / partner logos ──────────────────── */
+  .logo-wall {
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 34px;
+    max-width: 1000px; margin: 44px auto 0;
+  }
+  .logo-item { display: flex; flex-direction: column; align-items: center; }
+  .logo-tile {
+    background: #fff; border-radius: 3px; padding: 28px 40px;
+    display: flex; align-items: center; justify-content: center;
+    min-width: 210px; min-height: 104px;
+    box-shadow: 0 16px 44px rgba(0,0,0,.34);
+    transition: transform .5s cubic-bezier(.2,.7,.2,1);
+  }
+  .logo-item:hover .logo-tile { transform: translateY(-5px); }
+  .logo-tile img { max-width: 184px; max-height: 58px; width: auto; height: auto; display: block; }
+  .logo-cap {
+    margin-top: 18px; font-family: var(--sans); font-weight: 300; font-size: 10px;
+    letter-spacing: .24em; text-transform: uppercase; color: var(--muted);
+  }
+
+  /* ── Booking enquiry form ───────────────────── */
+  .booking { max-width: 720px; margin: 8px auto 60px; text-align: left; }
+  .booking .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 30px; }
+  .field { margin-bottom: 28px; }
+  .field.full { grid-column: 1 / -1; }
+  .field label {
+    display: block; font-family: var(--sans); font-weight: 300; font-size: 9.5px;
+    letter-spacing: .26em; text-transform: uppercase; color: var(--muted); margin-bottom: 9px;
+  }
+  .field input, .field textarea {
+    width: 100%; background: transparent; border: 0; border-bottom: 1px solid var(--rule-2);
+    color: var(--text); font-family: var(--serif); font-size: 18px; padding: 9px 0;
+    outline: none; transition: border-color .35s ease;
+  }
+  .field textarea { resize: vertical; min-height: 58px; }
+  .field input:focus, .field textarea:focus { border-color: var(--accent); }
+  .field input::placeholder, .field textarea::placeholder { color: var(--muted); opacity: .55; }
+  .booking .submit {
+    font-family: var(--sans); font-weight: 400; font-size: 10.5px;
+    letter-spacing: .28em; text-transform: uppercase; color: var(--text);
+    background: transparent; border: 1px solid var(--accent-soft); cursor: pointer;
+    padding: 16px 34px; display: inline-flex; align-items: center; gap: 12px;
+    transition: background .35s ease, color .35s ease, border-color .35s ease;
+  }
+  .booking .submit .arr { color: var(--accent); transition: transform .35s ease; }
+  .booking .submit:hover { background: var(--accent); color: #0C0B0E; border-color: var(--accent); }
+  .booking .submit:hover .arr { color: #0C0B0E; transform: translateX(5px); }
+  .booking .formnote {
+    font-family: var(--sans); font-weight: 300; font-size: 10px; letter-spacing: .12em;
+    color: var(--muted); margin-top: 18px; line-height: 1.6;
+  }
+  .booking .formok {
+    font-family: var(--serif); font-style: italic; font-size: 21px; color: var(--accent);
+    margin-top: 10px; text-wrap: pretty;
+  }
+  @media (max-width: 620px){ .booking .grid { grid-template-columns: 1fr; } }
+
+  /* ── Footer monogram ────────────────────────── */
+  .foot-mono { width: 56px; height: 56px; margin: 0 auto 32px; display: block; opacity: .92; }
 </style>
 </head>
 <body>
@@ -667,6 +815,7 @@
     <a href="#advisory">Advisory</a>
     <a href="#biography">Biography</a>
     <a href="#selected">Selected</a>
+    <a href="#calendar">Calendar</a>
     <a href="#watch">Watch</a>
     <a href="#contact">Contact</a>
   </nav>
@@ -789,7 +938,7 @@
 
       <p>Performs with the Latvian National Symphony Orchestra, Orchestra della Svizzera Italiana, Dresdner Philharmonie, and at festivals from Lugano to Evian. His repertoire merges <em>bel canto</em> lyricism with a deeply expressive, almost spoken technique — the signature work is <em>Carmen Fantasy</em> by Buxton Orr; transcriptions of Heifetz, Kreisler and operatic and film scores recur throughout the programmes. <em>Original compositions, performed in concert, await formal publication.</em></p>
 
-      <p>In 2024 Beitan represented Latvia at the <em>75th Anniversary of NATO</em>, performing at the <em>Andrew W. Mellon Auditorium</em> in Washington, D.C.; among other diplomatic engagements he has performed at the <em>United Nations in Geneva</em> at an event hosted by the Italian Embassy, and at the awards of the <em>Biennale di Venezia</em>. Beyond the concert stage he founded the Beitan Music Foundation, curating international cultural tours and museum-grade exhibitions of Stradivari, Guarneri and Amati instruments at Villa del Balbianello, Villa Mozart and the Art Museum Rīga Bourse — the latter in long-term curatorial partnership with the museum on Italian instrument programming.</p>
+      <p>In 2024 Beitan represented Latvia at the <em>75th Anniversary of NATO</em>, performing at the <em>National Library</em> in Washington, D.C.; further U.S. appearances include the <em>Andrew W. Mellon Auditorium</em>. Among other diplomatic engagements he has performed at the <em>United Nations in Geneva</em> at an event hosted by the Italian Embassy, and at the awards of the <em>Biennale di Venezia</em>. Beyond the concert stage he founded the Beitan Music Foundation, curating international cultural tours and museum-grade exhibitions of Stradivari, Guarneri and Amati instruments at Villa del Balbianello, Villa Mozart and the Art Museum Rīga Bourse — the latter in long-term curatorial partnership with the museum on Italian instrument programming.</p>
 
       <ul class="facts">
         <li><span>First study</span>Age 4 · Latvia</li>
@@ -843,10 +992,63 @@
   </div>
 </section>
 
+<!-- ────────── CONCERT CALENDAR ────────── -->
+<section class="calendar" id="calendar" data-screen-label="Calendar">
+  <div class="section-head reveal">
+    <span class="ix">IV.</span>
+    <span class="ttl">Signature engagements · 2026</span>
+    <span class="rule"></span>
+  </div>
+  <div class="cal-list reveal stagger">
+    <div class="cal-row">
+      <div class="cal-date">Aug<b>13</b></div>
+      <div class="cal-main">
+        <h3>Signature Show</h3>
+        <div class="venue">Mikhail Chekhov Drama Theatre · Riga, Latvia</div>
+      </div>
+    </div>
+    <div class="cal-row">
+      <div class="cal-date">Aug<b>16</b></div>
+      <div class="cal-main">
+        <h3>Signature Musical Salon</h3>
+        <div class="venue">Von Meck's Liepupe Manor · Liepupe, Latvia</div>
+      </div>
+    </div>
+    <div class="cal-row">
+      <div class="cal-date">Oct<b>02</b></div>
+      <div class="cal-main">
+        <h3>Signature Event</h3>
+        <div class="venue">Palazzo Lanza · Palermo, Italy</div>
+      </div>
+    </div>
+    <div class="cal-row">
+      <div class="cal-date">Oct<b>03</b></div>
+      <div class="cal-main">
+        <h3>Signature Event</h3>
+        <div class="venue">Palazzo Raffadali · Palermo, Italy</div>
+      </div>
+    </div>
+    <div class="cal-row">
+      <div class="cal-date">Dec<b>07</b></div>
+      <div class="cal-main">
+        <h3>40th Anniversary Celebration Concert</h3>
+        <div class="venue">Riga, Latvia</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ────────── LISTEN & WATCH ────────── -->
 <section class="listen reveal" id="watch" data-screen-label="Watch">
   <p class="eyebrow"><span class="mark">·</span> Listen &amp; watch <span class="mark">·</span></p>
   <h3>Recordings, recitals and tour fragments — on video.</h3>
+  <div class="video-frame reveal">
+    <a class="yt-facade" id="ytFacade" href="https://youtu.be/2SLiGct32r8" target="_blank" rel="noopener" aria-label="Watch the performance on YouTube">
+      <img class="yt-thumb" src="https://i.ytimg.com/vi/2SLiGct32r8/maxresdefault.jpg" alt="Max Beitan — performance" loading="lazy"
+        onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/2SLiGct32r8/hqdefault.jpg';" />
+      <span class="yt-play"><span class="yt-tri"></span></span>
+    </a>
+  </div>
   <div class="channels">
     <a href="https://www.youtube.com/c/MaxBeitan" target="_blank" rel="noopener"><span>YouTube</span></a>
     <a href="https://www.instagram.com/maxbeitan/" target="_blank" rel="noopener"><span>Instagram</span></a>
@@ -865,12 +1067,64 @@
     <span class="t">Venice Film Festival</span>
     <span class="t">NATO 75th Anniversary</span>
   </div>
+  <p class="eyebrow" style="margin-top:64px;">Featured in <span class="mark">·</span> partners &amp; patrons</p>
+  <div class="logo-wall reveal stagger">
+    <figure class="logo-item">
+      <div class="logo-tile"><img src="img/press-lofficiel.png" alt="L'Officiel Hommes" loading="lazy" /></div>
+      <figcaption class="logo-cap">Cover feature · L'Officiel Hommes</figcaption>
+    </figure>
+    <figure class="logo-item">
+      <div class="logo-tile"><img src="img/partner-riga-bourse.jpg" alt="Art Museum Rīga Bourse" loading="lazy" /></div>
+      <figcaption class="logo-cap">Curatorial partner · Art Museum Rīga Bourse</figcaption>
+    </figure>
+    <figure class="logo-item">
+      <div class="logo-tile"><img src="img/partner-fai.png" alt="FAI — Fondo per l'Ambiente Italiano" loading="lazy" /></div>
+      <figcaption class="logo-cap">Partner · FAI — The National Trust for Italy</figcaption>
+    </figure>
+    <figure class="logo-item">
+      <div class="logo-tile"><img src="img/partner-lac.png" alt="LAC Lugano Arte e Cultura" loading="lazy" /></div>
+      <figcaption class="logo-cap">Partner · LAC Lugano Arte e Cultura</figcaption>
+    </figure>
+    <figure class="logo-item">
+      <div class="logo-tile"><img src="img/partner-florian-leonhard.png" alt="Florian Leonhard Fine Violins" loading="lazy" /></div>
+      <figcaption class="logo-cap">Partner · Florian Leonhard Fine Violins</figcaption>
+    </figure>
+  </div>
   <p class="press-foot">Full press archive · <a href="mailto:pr@maxbeitan.com?subject=Press%20archive">on request</a></p>
 </section>
 
 <!-- ────────── FOOT ────────── -->
 <footer id="contact" data-screen-label="Contact">
+  <img class="foot-mono" src="img/mb-monogram.svg" alt="Max Beitan monogram" />
   <p class="signoff">For press, bookings and patronage.</p>
+  <form class="booking reveal" id="booking" novalidate>
+    <div class="grid">
+      <div class="field">
+        <label for="bk-name">Name</label>
+        <input id="bk-name" name="name" type="text" placeholder="Your name" required />
+      </div>
+      <div class="field">
+        <label for="bk-org">Organisation</label>
+        <input id="bk-org" name="org" type="text" placeholder="Orchestra, festival, gallery" />
+      </div>
+      <div class="field">
+        <label for="bk-email">Email</label>
+        <input id="bk-email" name="email" type="email" placeholder="you@email.com" required />
+      </div>
+      <div class="field">
+        <label for="bk-date">Date / engagement</label>
+        <input id="bk-date" name="date" type="text" placeholder="e.g. recital · Sept 2026" />
+      </div>
+      <div class="field full">
+        <label for="bk-msg">Message</label>
+        <textarea id="bk-msg" name="message" rows="3" placeholder="A few words about the engagement"></textarea>
+      </div>
+    </div>
+    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;" />
+    <button type="submit" class="submit">Send enquiry <span class="arr">→</span></button>
+    <p class="formnote">Your enquiry goes straight to max@maxbeitan.com.</p>
+    <p class="formok" id="formok" hidden>Thank you — your enquiry has been received. Max will be in touch.</p>
+  </form>
   <div class="lines">
     <a href="mailto:max@maxbeitan.com">max@maxbeitan.com</a>
     <a href="mailto:pr@maxbeitan.com">pr@maxbeitan.com</a>
@@ -953,6 +1207,42 @@
       wrap.appendChild(s);
     });
   });
+
+  // YouTube facade opens the video on YouTube (reliable regardless of embed settings)
+
+  // Booking enquiry → Formspree (falls back to email if endpoint not set)
+  const FORM_ENDPOINT = ''; // ← paste your Formspree URL here, e.g. 'https://formspree.io/f/xxxxxxx'
+  const booking = document.getElementById('booking');
+  if (booking) {
+    const val = (n) => (booking.querySelector('[name="' + n + '"]').value || '').trim();
+    const mailtoFallback = () => {
+      const name = val('name'), org = val('org'), email = val('email'), date = val('date'), message = val('message');
+      const subject = 'Booking enquiry — ' + name + (org ? ' (' + org + ')' : '');
+      const body = 'Name: ' + name + '\nOrganisation: ' + (org || '—') + '\nEmail: ' + email +
+        '\nDate / engagement: ' + (date || '—') + '\n\n' + (message || '');
+      window.location.href = 'mailto:max@maxbeitan.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    };
+    const showOk = () => {
+      booking.querySelector('.grid').style.display = 'none';
+      booking.querySelector('.submit').style.display = 'none';
+      booking.querySelector('.formnote').style.display = 'none';
+      booking.querySelector('#formok').hidden = false;
+    };
+    booking.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!val('name') || !val('email')) {
+        booking.querySelector(!val('name') ? '[name="name"]' : '[name="email"]').focus();
+        return;
+      }
+      if (FORM_ENDPOINT) {
+        try {
+          const res = await fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(booking) });
+          if (res.ok) { showOk(); return; }
+        } catch (err) {}
+      }
+      mailtoFallback();
+    });
+  }
 </script>
 </body>
 </html>
