@@ -1097,7 +1097,10 @@
 <footer id="contact" data-screen-label="Contact">
   <img class="foot-mono" src="img/mb-monogram.svg" alt="Max Beitan monogram" />
   <p class="signoff">For press, bookings and patronage.</p>
-  <form class="booking reveal" id="booking" novalidate>
+  <form class="booking reveal" id="booking" action="https://api.web3forms.com/submit" method="POST" novalidate>
+    <input type="hidden" name="access_key" value="494a35cf-412b-484c-b9fe-17d3937aa22d" />
+    <input type="hidden" name="subject" value="New booking enquiry — maxbeitan.com" />
+    <input type="hidden" name="from_name" value="maxbeitan.com" />
     <div class="grid">
       <div class="field">
         <label for="bk-name">Name</label>
@@ -1120,7 +1123,7 @@
         <textarea id="bk-msg" name="message" rows="3" placeholder="A few words about the engagement"></textarea>
       </div>
     </div>
-    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;" />
+    <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;" />
     <button type="submit" class="submit">Send enquiry <span class="arr">→</span></button>
     <p class="formnote">Your enquiry goes straight to max@maxbeitan.com.</p>
     <p class="formok" id="formok" hidden>Thank you — your enquiry has been received. Max will be in touch.</p>
@@ -1210,8 +1213,8 @@
 
   // YouTube facade opens the video on YouTube (reliable regardless of embed settings)
 
-  // Booking enquiry → Formspree (falls back to email if endpoint not set)
-  const FORM_ENDPOINT = ''; // ← paste your Formspree URL here, e.g. 'https://formspree.io/f/xxxxxxx'
+  // Booking enquiry → Web3Forms (falls back to mailto if the request fails)
+  const FORM_ENDPOINT = 'https://api.web3forms.com/submit';
   const booking = document.getElementById('booking');
   if (booking) {
     const val = (n) => (booking.querySelector('[name="' + n + '"]').value || '').trim();
