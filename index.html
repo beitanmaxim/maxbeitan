@@ -15,7 +15,7 @@
 <meta name="twitter:title" content="Max Beitan" />
 <meta name="twitter:description" content="Cellist · Founder, Beitan Music Foundation · Lugano" />
 <meta name="twitter:image" content="https://maxbeitan.com/img/studio-tux-direct.jpg" />
-<meta name="theme-color" content="#0C0B0E" />
+<meta name="theme-color" content="#0A0705" />
 
 <!-- ── Security headers (meta equivalents — GitHub Pages cannot set HTTP headers) ── -->
 <!-- Referrer Policy: only send the origin (no path) when navigating to external sites -->
@@ -67,42 +67,42 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --bg:#0C0B0E;
-    --bg-soft:#121116;
-    --panel:#16151B;
-    --text:#ECEAE4;
-    --muted:#8E8A82;
-    --platinum:#C9C5BC;
-    --accent:#C2A269;            /* champagne gold */
-    --accent-soft:#9C8350;
-    --rule:#26242B;
-    --rule-2:#34313A;
-    --scrim: rgba(12,11,14,.86);
-    --scrim-strong: rgba(12,11,14,.97);
-    --topbar-grad: rgba(12,11,14,.42);
+    --bg:#0A0705;
+    --bg-soft:#120D09;
+    --panel:#1A120C;
+    --text:#FAF8F5;
+    --muted:#B3A488;
+    --platinum:#D7C9B0;
+    --accent:#B08D57;            /* Swiss gold — unified with the Foundation */
+    --accent-soft:#85642E;
+    --rule: rgba(176,141,87,.18);
+    --rule-2: rgba(176,141,87,.30);
+    --scrim: rgba(10,7,5,.86);
+    --scrim-strong: rgba(10,7,5,.97);
+    --topbar-grad: rgba(10,7,5,.42);
     --serif:'Cormorant Garamond',Georgia,serif;
-    --sans:'Montserrat',Arial,sans-serif;
+    --sans:'Inter', system-ui, sans-serif;
     --maxw:1480px;
   }
 
   /* ── Light view ─────────────────────────────── */
   html[data-theme="light"] {
-    --bg:#F4F1EA;
-    --bg-soft:#EDE9DF;
-    --panel:#E9E4D8;
-    --text:#1A1813;
-    --muted:#5E5A50;
-    --platinum:#322F28;
+    --bg:#FAF8F5;
+    --bg-soft:#EFE7DA;
+    --panel:#ECE2D2;
+    --text:#26160E;
+    --muted:#6B5A48;
+    --platinum:#3A2A1C;
     --accent:#8A6A2E;
     --accent-soft:#6F5526;
-    --rule: rgba(26,24,19,.16);
-    --rule-2: rgba(26,24,19,.24);
-    --scrim: rgba(244,241,234,.9);
-    --scrim-strong: rgba(244,241,234,.98);
-    --topbar-grad: rgba(244,241,234,0);
+    --rule: rgba(60,30,18,.20);
+    --rule-2: rgba(60,30,18,.30);
+    --scrim: rgba(250,248,245,.9);
+    --scrim-strong: rgba(250,248,245,.98);
+    --topbar-grad: rgba(250,248,245,0);
   }
   html[data-theme="light"] .vignette { opacity: 0; }
   html[data-theme="light"] .grain { opacity: .03; }
@@ -114,7 +114,7 @@
   html[data-theme="light"] .stage .name em,
   html[data-theme="light"] .stage .sub span,
   html[data-theme="light"] .stage .kicker,
-  html[data-theme="light"] .plate .tag { color: #C2A269; }
+  html[data-theme="light"] .plate .tag { color: #B08D57; }
   html[data-theme="light"] .scrollcue { color: #C9C5BC; }
   * { box-sizing:border-box; margin:0; padding:0; }
   html { scroll-behavior:smooth; }
@@ -178,7 +178,7 @@
   html[data-theme="light"] .topbar.docked .themetoggle { color: var(--muted); }
   .topbar .brand {
     font-family: var(--serif); font-weight: 500; font-size: 18px;
-    letter-spacing: .26em; text-transform: uppercase; color: #ECEAE4;
+    letter-spacing: .26em; text-transform: uppercase; color: #FAF8F5;
     display: inline-flex; align-items: center; gap: .5em;
   }
   .topbar .brand b { color: var(--accent); font-weight: 500; }
@@ -205,7 +205,7 @@
   }
   .navtoggle span {
     position: absolute; left: 8px; right: 8px; height: 1.5px;
-    background: #ECEAE4; transition: transform .35s cubic-bezier(.2,.7,.2,1), opacity .25s ease;
+    background: #FAF8F5; transition: transform .35s cubic-bezier(.2,.7,.2,1), opacity .25s ease;
   }
   .navtoggle span:nth-child(1){ top: 16px; }
   .navtoggle span:nth-child(2){ top: 23px; }
@@ -289,7 +289,7 @@
   }
   .stage .photo {
     position: absolute; inset: 0;
-    background-color:#0c0b0e;
+    background-color:#0A0705;
     background-image: url('img/hero-web-color.jpg');
     background-size: cover;
     background-position: 50% 30%;
@@ -301,11 +301,11 @@
   .stage .veil {
     position: absolute; inset: 0;
     background:
-      linear-gradient(180deg, rgba(12,11,14,.22) 0%, rgba(12,11,14,0) 26%, rgba(12,11,14,0) 50%, rgba(12,11,14,.7) 80%, rgba(12,11,14,1) 100%);
+      linear-gradient(180deg, rgba(10,7,5,.22) 0%, rgba(10,7,5,0) 26%, rgba(10,7,5,0) 50%, rgba(10,7,5,.7) 80%, rgba(10,7,5,1) 100%);
   }
   .stage::after {
     content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 140px;
-    background: linear-gradient(180deg, rgba(12,11,14,0) 0%, rgba(12,11,14,1) 100%);
+    background: linear-gradient(180deg, rgba(10,7,5,0) 0%, rgba(10,7,5,1) 100%);
     z-index: 3; pointer-events: none;
   }
   .stage .hero-inner {
@@ -384,7 +384,7 @@
   }
   .quote:not(.has-bg) { border-bottom: 1px solid var(--rule); }
   /* Muti backdrop — felt, not literal: warm monochrome matching the hero's tungsten palette */
-  .quote.has-bg { overflow: hidden; background: #0C0B0E; }
+  .quote.has-bg { overflow: hidden; background: #0A0705; }
   .quote .qbg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
   /* backdrop is scenery, not content — exempt from the reveal slide/fade */
   .reveal > .qbg { opacity: 1; transform: none; }
@@ -398,16 +398,16 @@
   .quote .qbg::after {
     content: ""; position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 74% 56% at 50% 50%, rgba(12,11,14,.4), rgba(12,11,14,.6) 82%),
+      radial-gradient(ellipse 74% 56% at 50% 50%, rgba(10,7,5,.4), rgba(10,7,5,.6) 82%),
       linear-gradient(180deg,
-        #0C0B0E 0%, rgba(12,11,14,.72) 10%, rgba(12,11,14,.3) 28%,
-        rgba(12,11,14,.24) 66%, rgba(12,11,14,.62) 88%, #0C0B0E 100%);
+        #0A0705 0%, rgba(10,7,5,.72) 10%, rgba(10,7,5,.3) 28%,
+        rgba(10,7,5,.24) 66%, rgba(10,7,5,.62) 88%, #0A0705 100%);
   }
   /* settle from photo-black back into the page bg (cream in light view) without a hard edge */
   .quote.has-bg { border-bottom: none; }
   .quote .qfade {
     position: absolute; left: 0; right: 0; bottom: 0; height: 16vh; z-index: 1; pointer-events: none;
-    background: linear-gradient(180deg, rgba(12,11,14,0) 0%, var(--bg) 100%);
+    background: linear-gradient(180deg, rgba(10,7,5,0) 0%, var(--bg) 100%);
     opacity: 0; transition: opacity .5s ease;
   }
   html[data-theme="light"] .quote .qfade { opacity: 1; }
@@ -697,7 +697,7 @@
     content:""; position:absolute; inset:0; background: var(--accent);
     transform: translateY(101%); transition: transform .4s cubic-bezier(.2,.7,.2,1);
   }
-  .channels a:hover { color:#0c0b0e; border-color: var(--accent); }
+  .channels a:hover { color:#0A0705; border-color: var(--accent); }
   .channels a:hover::before { transform: translateY(0); }
 
   /* ── Press strip ────────────────────────────── */
@@ -823,15 +823,15 @@
     display: flex; align-items: center; justify-content: center;
   }
   .yt-thumb { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-  .yt-facade::after { content: ""; position: absolute; inset: 0; background: rgba(12,11,14,.30); transition: background .4s ease; }
+  .yt-facade::after { content: ""; position: absolute; inset: 0; background: rgba(10,7,5,.30); transition: background .4s ease; }
   .yt-play {
     position: relative; z-index: 1; width: 84px; height: 84px; border-radius: 50%;
     background: rgba(194,162,105,.92); display: flex; align-items: center; justify-content: center;
     box-shadow: 0 12px 44px rgba(0,0,0,.5); transition: transform .45s cubic-bezier(.2,.7,.2,1), background .3s ease;
   }
-  .yt-facade:hover::after { background: rgba(12,11,14,.14); }
+  .yt-facade:hover::after { background: rgba(10,7,5,.14); }
   .yt-facade:hover .yt-play { transform: scale(1.07); background: var(--accent); }
-  .yt-tri { width: 0; height: 0; border-style: solid; border-width: 13px 0 13px 22px; border-color: transparent transparent transparent #0C0B0E; margin-left: 5px; }
+  .yt-tri { width: 0; height: 0; border-style: solid; border-width: 13px 0 13px 22px; border-color: transparent transparent transparent #0A0705; margin-left: 5px; }
 
   /* ── Press / partner logos ──────────────────── */
   .logo-wall {
@@ -878,8 +878,8 @@
     transition: background .35s ease, color .35s ease, border-color .35s ease;
   }
   .booking .submit .arr { color: var(--accent); transition: transform .35s ease; }
-  .booking .submit:hover { background: var(--accent); color: #0C0B0E; border-color: var(--accent); }
-  .booking .submit:hover .arr { color: #0C0B0E; transform: translateX(5px); }
+  .booking .submit:hover { background: var(--accent); color: #0A0705; border-color: var(--accent); }
+  .booking .submit:hover .arr { color: #0A0705; transform: translateX(5px); }
   .booking .formnote {
     font-family: var(--sans); font-weight: 300; font-size: 10px; letter-spacing: .12em;
     color: var(--muted); margin-top: 18px; line-height: 1.6;
@@ -990,7 +990,7 @@
     <article class="pillar">
       <div class="num">01</div>
       <h2>The Cellist</h2>
-      <p>Three decades inside the European concert tradition. Solo and chamber tours through <em>Musica Viva</em> — historically considered programmes in architecturally significant European venues, from Lugano and Lake Como to Palermo.</p>
+      <p>Three decades inside the European concert tradition. Solo and chamber tours through <em>Musica Viva</em> — thoughtfully curated programmes in landmark European venues, from Lugano and Lake Como to Palermo.</p>
       <a class="cta" href="https://musicavivatours.com/" target="_blank" rel="noopener noreferrer">Musica Viva — tour dates <span class="arr">→</span></a>
     </article>
     <article class="pillar" id="foundation">
