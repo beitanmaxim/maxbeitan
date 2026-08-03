@@ -1,0 +1,85 @@
+<!--
+  ============================================================
+  Баннер согласия на cookies: минимальный вариант
+  Подготовлено 3 августа 2026
+
+  ЗАЧЕМ ЭТО НУЖНО
+  Пиксель Meta ставит рекламные cookie. В ЕС такие cookie можно
+  ставить только после явного согласия посетителя (ePrivacy
+  Directive плюс GDPR). Аналитика и реклама согласия требуют,
+  технически необходимые cookie нет.
+
+  Практический риск для сайта музыканта невысокий, но требование
+  формальное и реальное. Решение ваше. Этот файл даёт минимальную
+  честную реализацию: пока посетитель не нажал «Принять», пиксель
+  не отправляет ни одного события.
+
+  КАК ПОСТАВИТЬ
+  1. Вставьте весь блок ниже прямо перед закрывающим </body>
+     в index.html и во всех трёх страницах события
+  2. Больше ничего делать не надо: пиксель в этих файлах уже
+     ждёт события cookieConsentGranted
+
+  ЕСЛИ БАННЕР НЕ НУЖЕН
+  Тогда вместо этого блока вставьте одну строку перед скриптом
+  пикселя, и события пойдут сразу:
+      <script>window.hasCookieConsent = () => true;</script>
+  Это осознанный выбор в пользу простоты против буквы закона.
+  ============================================================
+-->
+
+<style>
+  .cc{position:fixed;left:16px;right:16px;bottom:16px;z-index:9999;
+    max-width:560px;margin:0 auto;padding:18px 20px;
+    background:#141C31;color:#ECEFF6;border:1px solid rgba(176,141,87,.42);
+    font-family:"Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:13.5px;line-height:1.6;font-weight:300;
+    box-shadow:0 18px 50px rgba(0,0,0,.45);
+    display:none;align-items:center;gap:16px;flex-wrap:wrap}
+  .cc.show{display:flex}
+  .cc p{margin:0;flex:1 1 260px}
+  .cc a{color:#B08D57}
+  .cc-btns{display:flex;gap:10px;flex:0 0 auto}
+  .cc button{font-family:inherit;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    padding:11px 20px;cursor:pointer;border:1px solid rgba(176,141,87,.55);
+    background:transparent;color:#ECEFF6;transition:background .3s ease,color .3s ease}
+  .cc button.ok{background:#B08D57;border-color:#B08D57;color:#111A2E}
+  .cc button:hover{background:#B08D57;color:#111A2E}
+  html[data-theme="light"] .cc{background:#ECE2D2;color:#26160E;
+    border-color:rgba(60,30,18,.28)}
+  html[data-theme="light"] .cc button{color:#26160E;border-color:rgba(60,30,18,.35)}
+  @media(max-width:520px){.cc{font-size:12.5px}.cc-btns{flex:1 1 100%}
+    .cc button{flex:1}}
+</style>
+
+<div class="cc" id="cc" role="dialog" aria-live="polite"
+     aria-label="Cookies">
+  <p>This site uses cookies to measure how people find our concerts.
+     Nothing is set until you agree.</p>
+  <div class="cc-btns">
+    <button type="button" id="ccNo">Decline</button>
+    <button type="button" class="ok" id="ccYes">Accept</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  var KEY = 'mb-consent', box = document.getElementById('cc'), saved = null;
+  try { saved = localStorage.getItem(KEY); } catch (e) {}
+
+  // Пиксель спрашивает именно эту функцию перед отправкой событий
+  window.hasCookieConsent = function () { return saved === 'yes'; };
+
+  if (saved === 'yes' || saved === 'no') return;   // уже решили, не спрашиваем снова
+  box.classList.add('show');
+
+  function decide(value) {
+    saved = value;
+    try { localStorage.setItem(KEY, value); } catch (e) {}
+    box.classList.remove('show');
+    if (value === 'yes') window.dispatchEvent(new Event('cookieConsentGranted'));
+  }
+  document.getElementById('ccYes').addEventListener('click', function () { decide('yes'); });
+  document.getElementById('ccNo').addEventListener('click',  function () { decide('no');  });
+})();
+</script>
