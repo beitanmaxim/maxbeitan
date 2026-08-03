@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <title>La Dolce Vita &middot; Max Beitan, solo cello &middot; Riga, 13 August 2026</title>
-<meta name="description" content="Max Beitan, solo cello, with string quartet and piano. Bach, Vivaldi, Shostakovich, Morricone, Rodrigo, Albéniz, Piazzolla, Ellington. Thursday 13 August 2026, 19:00, Retro Hall, Mikhail Chekhov Riga Russian Theatre. Tickets 49.06 EUR." />
+<meta name="description" content="Max Beitan, solo cello, with string quartet and piano. Bach, Vivaldi, Shostakovich, Morricone, Rodrigo, Albéniz, Piazzolla, Ellington. Thursday 13 August 2026, 19:00, Retro Hall, Mikhail Chekhov Riga Russian Theatre. Tickets 47.03 EUR." />
 
 <link rel="canonical" href="https://maxbeitan.com/events/2026-08-13-la-dolce-vita-riga/" />
 <link rel="alternate" hreflang="en" href="https://maxbeitan.com/events/2026-08-13-la-dolce-vita-riga/" />
@@ -106,7 +106,7 @@
     "@type": "Offer",
     "name": "General admission",
     "url": "https://www.bilesuserviss.lv/biletes/4ZRINDO22H/la-dolce-vita-maksims-beitans-solo-koncerts",
-    "price": "49.06",
+    "price": "47.03",
     "priceCurrency": "EUR",
     "availability": "https://schema.org/InStock"
   },
@@ -205,7 +205,7 @@
       "name": "How much is a ticket?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "49.06 EUR including the booking fee. One category, sold through Biļešu Serviss."
+        "text": "47.03 EUR in total: 45.00 EUR for the ticket plus a 2.03 EUR booking fee. One category, sold through Biļešu Serviss."
       }
     },
     {
@@ -254,18 +254,31 @@ fbq('init','PIXEL_ID_HERE');
 })();
 </script>
 
+<script>
+  // Ставим тему до первой отрисовки, иначе мигает
+  (function(){try{var t=localStorage.getItem('mb-theme');
+    document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark');}
+    catch(e){document.documentElement.setAttribute('data-theme','dark');}})();
+</script>
 <style>
+  /* Тёмная тема по умолчанию, светлая как на главной.
+     Ключ localStorage тот же (mb-theme), поэтому выбор посетителя
+     переносится с главной страницы сюда и обратно. */
   :root{--ink:#111A2E;--gold:#B08D57;--cream:#ECEFF6;--muted:#8F99AE;
+    --rule:rgba(176,141,87,.32);--rule2:rgba(176,141,87,.18);--heroveil:.92;
     --serif:"Cormorant Garamond",Georgia,serif;
     --sans:"Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+  html[data-theme="light"]{--ink:#FAF8F5;--gold:#8A6A2E;--cream:#26160E;--muted:#6B5A48;
+    --rule:rgba(60,30,18,.22);--rule2:rgba(60,30,18,.14);--heroveil:.90}
   *{box-sizing:border-box} html{scroll-behavior:smooth}
   body{margin:0;background:var(--ink);color:var(--cream);font-family:var(--sans);
-    font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased}
+    font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased;
+    transition:background .5s ease,color .5s ease}
   a{color:var(--gold)}
   .hero{position:relative;width:100%;aspect-ratio:3/2;max-height:62vh;overflow:hidden}
   .hero img{width:100%;height:100%;object-fit:cover;object-position:center 42%;display:block}
   .hero::after{content:"";position:absolute;inset:0;
-    background:linear-gradient(to bottom,rgba(17,26,46,.15) 0%,rgba(17,26,46,0) 35%,rgba(17,26,46,.92) 100%)}
+    background:linear-gradient(to bottom,color-mix(in srgb,var(--ink) 15%,transparent) 0%,transparent 35%,color-mix(in srgb,var(--ink) 94%,transparent) 100%)}
   .wrap{max-width:720px;margin:0 auto;padding:0 26px 110px}
   .lede{margin-top:-96px;position:relative;z-index:2;text-align:center}
   .kicker{font-size:11px;letter-spacing:.30em;text-transform:uppercase;color:var(--gold);margin:0 0 18px}
@@ -274,7 +287,7 @@ fbq('init','PIXEL_ID_HERE');
   h1 em{font-style:italic;color:var(--gold);display:block}
   .sub{font-size:15px;color:var(--muted);margin:0 0 40px}
   h2{font-family:var(--serif);font-weight:300;font-size:30px;margin:56px 0 16px}
-  .facts{border-top:1px solid rgba(176,141,87,.32);border-bottom:1px solid rgba(176,141,87,.32);
+  .facts{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
     padding:26px 0;margin:0 0 34px}
   .facts dl{display:grid;grid-template-columns:150px 1fr;gap:12px 22px;margin:0}
   .facts dt{font-size:10px;letter-spacing:.20em;text-transform:uppercase;color:var(--gold);padding-top:5px}
@@ -286,7 +299,7 @@ fbq('init','PIXEL_ID_HERE');
   .note{font-size:13px;color:var(--muted);margin:16px 0 0}
   .center{text-align:center} p{font-size:16.5px}
   .prog{list-style:none;padding:0;margin:0}
-  .prog li{padding:12px 0;border-bottom:1px solid rgba(176,141,87,.18);font-size:16px;
+  .prog li{padding:12px 0;border-bottom:1px solid var(--rule2);font-size:16px;
     display:flex;justify-content:space-between;gap:16px}
   .prog li:last-child{border-bottom:none}
   .prog span{color:var(--muted);font-size:13px;letter-spacing:.06em;text-align:right}
@@ -294,7 +307,7 @@ fbq('init','PIXEL_ID_HERE');
   blockquote p{font-family:var(--serif);font-style:italic;font-size:27px;line-height:1.35;margin:0}
   blockquote cite{display:block;font-family:var(--sans);font-style:normal;font-size:10px;
     letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-top:16px}
-  details{border-bottom:1px solid rgba(176,141,87,.18);padding:16px 0}
+  details{border-bottom:1px solid var(--rule2);padding:16px 0}
   summary{cursor:pointer;font-size:16px;list-style:none;color:var(--cream)}
   summary::-webkit-details-marker{display:none}
   summary::before{content:"+";color:var(--gold);margin-right:12px}
@@ -305,15 +318,38 @@ fbq('init','PIXEL_ID_HERE');
   .langs a{color:var(--muted);text-decoration:none;margin:0 10px}
   .langs a:hover{color:var(--gold)}
   .langs b{color:var(--gold);font-weight:400;margin:0 10px}
-  footer{margin-top:70px;padding-top:26px;border-top:1px solid rgba(176,141,87,.2);
+  footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--rule2);
     font-size:12px;letter-spacing:.10em;color:var(--muted);text-align:center}
   footer a{color:var(--muted);text-decoration:none} footer a:hover{color:var(--gold)}
+  .bar{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;
+    justify-content:space-between;padding:16px 24px;
+    background:linear-gradient(to bottom,color-mix(in srgb,var(--ink) 70%,transparent),transparent)}
+  /* и логотип, и переключатель лежат на светлом небе фотографии,
+     поэтому оба получают тёмную подложку и читаются в обеих темах */
+  .bar a.home{font-family:var(--serif);font-size:16px;letter-spacing:.26em;text-transform:uppercase;
+    color:#F4F1EA;text-decoration:none;background:rgba(17,26,46,.55);
+    padding:8px 14px 8px 18px;border-radius:999px;backdrop-filter:blur(6px)}
+  .tt{background:rgba(17,26,46,.55);border:0;padding:8px 12px;cursor:pointer;
+    display:inline-flex;align-items:center;color:#E6E2DA;border-radius:999px;
+    backdrop-filter:blur(6px)}
+  .tt span{box-sizing:border-box;position:relative;width:46px;height:24px;border-radius:999px;
+    border:1px solid currentColor;display:block}
+  .tt span::after{content:"";position:absolute;top:50%;left:4px;width:16px;height:16px;
+    border-radius:50%;transform:translateY(-50%);background:var(--gold);
+    transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+  html[data-theme="light"] .tt span::after{transform:translate(22px,-50%)}
   @media(max-width:560px){.facts dl{grid-template-columns:1fr;gap:2px 0}
     .facts dd{margin-bottom:16px}.prog li{flex-direction:column;gap:2px}
     .prog span{text-align:left}.lede{margin-top:-64px}}
 </style>
 </head>
 <body>
+
+<div class="bar">
+  <a class="home" href="../../">MB</a>
+  <button class="tt" id="tt" type="button" role="switch" aria-checked="false"
+          aria-label="Dark / light"><span></span></button>
+</div>
 
 <div class="hero">
   <img src="../../img/la-dolce-vita-2026.jpg" alt="Max Beitan, La Dolce Vita" />
@@ -333,7 +369,7 @@ fbq('init','PIXEL_ID_HERE');
       <dt>Time</dt><dd>19:00 &middot; doors 18:30 &middot; ends around 20:15</dd>
       <dt>Venue</dt><dd>Retro Hall, Mikhail Chekhov Riga Russian Theatre<br />Kaļķu iela 16, Riga Old Town</dd>
       <dt>Hall</dt><dd>The Retro Hall, an intimate room</dd>
-      <dt>Ticket</dt><dd>49.06 EUR, one category</dd>
+      <dt>Ticket</dt><dd>47.03 EUR &mdash; 45.00 EUR plus a 2.03 EUR booking fee</dd>
     </dl>
   </div>
 
@@ -374,7 +410,7 @@ fbq('init','PIXEL_ID_HERE');
   <details><summary>Where exactly is the Retro Hall?</summary>
     <p>Inside the Mikhail Chekhov Riga Russian Theatre, Kaļķu iela 16, about three minutes on foot from the Town Hall Square.</p></details>
   <details><summary>How much is a ticket?</summary>
-    <p>49.06 EUR including the booking fee. One category, sold through Biļešu Serviss.</p></details>
+    <p>47.03 EUR in total: 45.00 EUR for the ticket plus a 2.03 EUR booking fee. One category, sold through Biļešu Serviss.</p></details>
   <details><summary>Do I need to speak Latvian or Russian?</summary>
     <p>No. The evening is music. Any spoken introductions are given in Latvian, Russian and English.</p></details>
   <details><summary>Who else performs?</summary>
@@ -396,11 +432,27 @@ fbq('init','PIXEL_ID_HERE');
 </div>
 
 <script>
+  // Тема: тот же ключ localStorage, что на главной, поэтому выбор переносится
+  (function () {
+    var root = document.documentElement, btn = document.getElementById('tt'), saved = null;
+    try { saved = localStorage.getItem('mb-theme'); } catch (e) {}
+    function apply(t) {
+      root.setAttribute('data-theme', t);
+      btn.setAttribute('aria-checked', t === 'light' ? 'true' : 'false');
+    }
+    apply(saved === 'light' ? 'light' : 'dark');
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      apply(next);
+      try { localStorage.setItem('mb-theme', next); } catch (e) {}
+    });
+  })();
+
   document.querySelectorAll('a[href*="bilesuserviss"]').forEach(function (el) {
     el.addEventListener('click', function () {
       if (typeof fbq === 'function') {
         fbq('trackCustom', 'ClickToTickets',
-            {concert: 'la-dolce-vita-2026-08-13', value: 49.06, currency: 'EUR'});
+            {concert: 'la-dolce-vita-2026-08-13', value: 47.03, currency: 'EUR'});
       }
     });
   });
