@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Press Kit | Max Beitan</title>
+<meta name="description" content="Press kit for Max Beitan, cellist: biographies in three lengths, fact sheet, selected quotes, photographs and technical rider." />
+<!-- Unlisted page: kept out of search results, the sitemap and the site navigation.
+     Share the URL directly with promoters and press. -->
+<meta name="robots" content="noindex, nofollow" />
+<meta property="og:title" content="Press Kit | Max Beitan" />
+<meta property="og:description" content="Biographies, fact sheet, quotes, photographs and technical rider." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://maxbeitan.com/press.html" />
+<meta property="og:image" content="https://maxbeitan.com/img/studio-tux-direct.jpg" />
+<meta property="og:image:alt" content="Max Beitan, cellist" />
+<meta property="og:locale" content="en_GB" />
+<meta name="theme-color" content="#111A2E" />
+
+<!-- Security headers: same policy as index.html (GitHub Pages cannot send real headers) -->
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  style-src   'self' 'unsafe-inline' https://fonts.googleapis.com;
+  font-src    'self' https://fonts.gstatic.com;
+  img-src     'self' data: https://maxbeitan.com;
+  media-src   'self';
+  script-src  'self' 'unsafe-inline';
+  connect-src 'self';
+  form-action 'self';
+  frame-src   'none';
+  object-src  'none';
+  base-uri    'self';
+" />
+<link rel="icon" type="image/svg+xml" href="img/mb-monogram.svg" />
+
+<!-- Theme before first paint: same localStorage key as the rest of the site -->
+<script>
+  try { if (localStorage.getItem('mb-theme') === 'light') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
+<style>
+  /* Tokens copied from index.html :root (live site, commit d7704a4) */
+  :root {
+    --bg:#111A2E; --bg-soft:#18223A; --panel:#1E2A45;
+    --text:#ECEFF6; --muted:#98A2B8; --platinum:#C6CCDA;
+    --accent:#B08D57; --accent-soft:#85642E;
+    --rule: rgba(176,141,87,.18); --rule-2: rgba(176,141,87,.30);
+    --serif:'Cormorant Garamond', Georgia, serif;
+    --sans:'Inter', system-ui, sans-serif;
+    --gutter: clamp(16px, 5vw, 72px);
+    --maxw: 1180px;
+  }
+  html[data-theme="light"] {
+    --bg:#FAF8F5; --bg-soft:#EFE7DA; --panel:#ECE2D2;
+    --text:#26160E; --muted:#6B5A48; --platinum:#3A2A1C;
+    --accent:#8A6A2E; --accent-soft:#6F5526;
+    --rule: rgba(60,30,18,.20); --rule-2: rgba(60,30,18,.30);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: var(--serif); -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  ::selection { background: rgba(176,141,87,.28); }
+  :focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
+
+  /* Labels: 12px floor (index.html uses 9–10.5px; see audit) */
+  .label {
+    font-family: var(--sans); font-weight: 300; font-size: 12px;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--muted);
+  }
+  .label b { font-weight: 400; color: var(--accent); }
+
+  /* ── Bar ───────────────────────────────── */
+  .bar {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 14px var(--gutter);
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+  }
+  main > section { scroll-margin-top: 72px; } /* anchors land below the sticky bar */
+  .bar .home {
+    font-family: var(--serif); font-weight: 500; font-size: 18px;
+    letter-spacing: .26em; text-decoration: none; padding: 10px 0;
+  }
+  .bar .home b { color: var(--accent); font-weight: 500; }
+  .langs { display: flex; border: 1px solid var(--rule-2); }
+  .langs button {
+    font: 400 12px/1 var(--sans); letter-spacing: .18em;
+    background: none; border: 0; color: var(--muted); cursor: pointer;
+    min-width: 48px; min-height: 40px; padding: 0 12px;
+  }
+  .langs button[aria-pressed="true"] { background: var(--accent); color: var(--bg); }
+
+  /* ── Head ──────────────────────────────── */
+  .intro {
+    max-width: var(--maxw); margin: 0 auto;
+    padding: clamp(56px, 12vh, 120px) var(--gutter) clamp(40px, 7vh, 72px);
+  }
+  .intro h1 {
+    font-weight: 400; font-size: clamp(46px, 8vw, 104px); line-height: .95;
+    margin: 18px 0 20px;
+  }
+  .intro h1 em { font-style: italic; font-weight: 300; color: var(--accent); }
+  .intro .line { font-family: var(--sans); font-weight: 300; font-size: 14px; letter-spacing: .08em; color: var(--platinum); }
+  .index {
+    list-style: none; margin-top: 48px;
+    display: flex; flex-wrap: wrap; gap: 4px 28px;
+  }
+  .index a {
+    display: inline-block; padding: 10px 0; text-decoration: none;
+    font-family: var(--sans); font-weight: 300; font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--platinum); border-bottom: 1px solid transparent;
+  }
+  .index a span { color: var(--accent); margin-right: 8px; }
+  .index a:hover { border-color: var(--accent); }
+
+  /* ── Sections ─────────────────────────── */
+  main > section {
+    max-width: var(--maxw); margin: 0 auto;
+    padding: clamp(48px, 9vh, 96px) var(--gutter);
+    border-top: 1px solid var(--rule);
+  }
+  .sec-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: clamp(28px, 5vh, 48px); }
+  .sec-head .ix { font-family: var(--sans); font-size: 12px; letter-spacing: .2em; color: var(--accent); }
+  .sec-head h2 { font-weight: 400; font-size: clamp(30px, 4vw, 46px); line-height: 1.05; }
+  .note { font-family: var(--sans); font-weight: 300; font-size: 13px; line-height: 1.6; color: var(--muted); max-width: 64ch; margin: -16px 0 36px; }
+
+  /* Pending slots: visible on the draft, never mistaken for copy */
+  .pending {
+    font-style: italic; color: var(--muted);
+    border: 1px dashed var(--rule-2); padding: 14px 18px;
+  }
+
+  /* ── Biographies ──────────────────────── */
+  .bio {
+    display: grid; grid-template-columns: minmax(180px, 1fr) 2.6fr; gap: 20px 56px;
+    padding: 36px 0; border-bottom: 1px solid var(--rule);
+  }
+  .bio:first-of-type { padding-top: 0; }
+  .bio:last-of-type { border-bottom: 0; padding-bottom: 0; }
+  .bio-meta { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+  .bio-meta h3 { font-weight: 400; font-size: 26px; line-height: 1.1; }
+  .count { font-family: var(--sans); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .count.off { color: var(--accent); }
+  .copy {
+    font: 400 12px/1 var(--sans); letter-spacing: .18em; text-transform: uppercase;
+    color: var(--platinum); background: none; cursor: pointer;
+    border: 1px solid var(--rule-2); min-height: 40px; padding: 0 16px;
+  }
+  .copy:hover { border-color: var(--accent); }
+  .copy:disabled { opacity: .4; cursor: default; }
+  .bio-text p { font-size: 20px; line-height: 1.62; color: var(--platinum); max-width: 66ch; text-wrap: pretty; }
+  .bio-text p + p { margin-top: 18px; }
+  .bio-text em { color: var(--text); }
+  .bio-text .src { font-family: var(--sans); font-size: 12px; letter-spacing: .04em; color: var(--muted); margin-bottom: 16px; }
+  /* Language switch: only the active language is shown */
+  html:not([data-lang="ru"]) .bio-text [lang="ru"],
+  html[data-lang="ru"] .bio-text [lang="en"] { display: none; }
+
+  /* ── Fact sheet ───────────────────────── */
+  .facts { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--rule); }
+  .facts div { padding: 18px 24px 18px 0; border-bottom: 1px solid var(--rule); }
+  .facts dt { margin-bottom: 6px; }
+  .facts dd { font-size: 19px; line-height: 1.4; }
+
+  /* ── Quotes ───────────────────────────── */
+  .quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0 56px; }
+  .quotes figure { padding: 24px 0; border-bottom: 1px solid var(--rule); }
+  .quotes blockquote { font-style: italic; font-weight: 300; font-size: 23px; line-height: 1.4; margin-bottom: 14px; text-wrap: pretty; }
+  .quotes figcaption { font-family: var(--sans); font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .quotes figcaption b { display: block; font-weight: 400; color: var(--text); letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 2px; }
+
+  /* ── Photographs ──────────────────────── */
+  .photos { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 32px 24px; }
+  .photo .frame {
+    aspect-ratio: 4 / 5; background: var(--panel); border: 1px solid var(--rule);
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
+  }
+  .photo .frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .photo .frame .ph { font-family: var(--sans); font-size: 12px; color: var(--muted); padding: 16px; text-align: center; }
+  .photo figcaption { margin-top: 12px; font-family: var(--sans); font-size: 13px; line-height: 1.55; color: var(--muted); }
+  .photo figcaption b { display: block; font-family: var(--serif); font-weight: 400; font-size: 18px; color: var(--text); margin-bottom: 2px; }
+  .photo .dl { display: inline-block; margin-top: 8px; padding: 8px 0; color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--rule-2); }
+  .photo .dl:hover { border-color: var(--accent); }
+
+  /* ── Rider & contact ──────────────────── */
+  .rider { border-top: 1px solid var(--rule); }
+  .rider div { display: grid; grid-template-columns: minmax(180px, 1fr) 2.6fr; gap: 8px 56px; padding: 18px 0; border-bottom: 1px solid var(--rule); }
+  .rider dd { font-size: 19px; line-height: 1.45; }
+  .contact { display: flex; flex-wrap: wrap; gap: 24px 64px; }
+  .contact a { font-size: clamp(22px, 3vw, 30px); text-decoration: none; border-bottom: 1px solid var(--rule-2); padding-bottom: 4px; }
+  .contact a:hover { border-color: var(--accent); color: var(--accent); }
+  .contact p { margin-bottom: 10px; }
+
+  footer { max-width: var(--maxw); margin: 0 auto; padding: 48px var(--gutter) 64px; border-top: 1px solid var(--rule); }
+
+  @media (max-width: 760px) {
+    .bio, .rider div { grid-template-columns: 1fr; }
+    .bio-meta { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
+    .bio-meta h3 { width: 100%; }
+    .bio-text p { font-size: 19px; }
+    .facts { grid-template-columns: 1fr; }
+    .quotes blockquote { font-size: 21px; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <a class="home" href="/" aria-label="Max Beitan, home">M<b>B</b></a>
+  <div class="langs" role="group" aria-label="Biography language">
+    <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
+    <button type="button" data-set-lang="ru" aria-pressed="false">RU</button>
+  </div>
+</header>
+
+<main>
+  <div class="intro">
+    <p class="label">Press kit</p>
+    <h1>Max <em>Beitan</em></h1>
+    <!-- Positioning line = index.html og:description (Lugano restored 2026-10-15) -->
+    <p class="line">Cellist · Founder, Beitan Music Foundation · Lugano</p>
+    <ol class="index">
+      <li><a href="#biographies"><span>I.</span>Biographies</a></li>
+      <li><a href="#facts"><span>II.</span>Fact sheet</a></li>
+      <li><a href="#quotes"><span>III.</span>Quotes</a></li>
+      <li><a href="#photographs"><span>IV.</span>Photographs</a></li>
+      <li><a href="#rider"><span>V.</span>Technical rider</a></li>
+      <li><a href="#contact"><span>VI.</span>Contact</a></li>
+    </ol>
+  </div>
+
+  <!-- ═══ I. BIOGRAPHIES ═══════════════════════════════════════════
+       One <article class="bio"> per length. Each holds an EN and an RU block.
+       Replace a .pending paragraph with approved text; the word counter and
+       copy button pick it up automatically. data-target = "min-max" words. -->
+  <section id="biographies" aria-labelledby="h-bio">
+    <div class="sec-head"><span class="ix">I.</span><h2 id="h-bio">Biographies</h2></div>
+    <p class="note">Three approved lengths for programmes, festival brochures and press releases. Please print without edits; for a different length, write to pr@maxbeitan.com.</p>
+
+    <article class="bio" data-target="90-110">
+      <div class="bio-meta">
+        <h3>Short</h3>
+        <span class="label">Approx. 100 words</span>
+        <span class="count" aria-live="polite"></span>
+        <button class="copy" type="button">Copy text</button>
+      </div>
+      <div class="bio-text">
+        <div lang="en"><p class="pending">Awaiting approved English text.</p></div>
+        <div lang="ru"><p class="pending">Ожидает утверждённого русского текста.</p></div>
+      </div>
+    </article>
+
+    <article class="bio" data-target="250-300">
+      <div class="bio-meta">
+        <h3>Medium</h3>
+        <span class="label">250–300 words</span>
+        <span class="count" aria-live="polite"></span>
+        <button class="copy" type="button">Copy text</button>
+      </div>
+      <div class="bio-text">
+        <div lang="en"><p class="pending">Awaiting approved English text.</p></div>
+        <div lang="ru"><p class="pending">Ожидает утверждённого русского текста.</p></div>
+      </div>
+    </article>
+
+    <article class="bio">
+      <div class="bio-meta">
+        <h3>Long</h3>
+        <span class="label">Narrative · no fixed length</span>
+        <span class="count" aria-live="polite"></span>
+        <button class="copy" type="button">Copy text</button>
+      </div>
+      <div class="bio-text">
+        <div lang="en">
+          <!-- SOURCE TEXT: verbatim from the live index.html #biography (commit d7704a4).
+               To be edited into the approved long biography; delete the .src line when approved. -->
+          <p class="src">Draft: current website text, not yet edited for press</p>
+          <p>A Latvian cellist celebrated for emotive performances and innovative interpretations. Max Beitan's musical journey began at the age of four in Latvia; he made his international debut at eight with the Kaunas Philharmonic, and at nine won his second Grand Prix at the <em>Liezen International Cello Competition</em> — drawing the attention of <em>Daniil Shafran</em>, who invited him to study privately.</p>
+          <p>Mentorships followed with <em>Johannes Goritzki</em>, <em>Victoria Yagling</em>, <em>Natalia Gutman</em>, and the pianist <em>Ivo Pogorelich</em>, whose teaching has left an indelible mark on Beitan's approach to performance. Triumphs in 18 international competitions and five Grand Prix; Honorary Swiss Government Grant holder.</p>
+          <p>Performs with the Latvian National Symphony Orchestra, Orchestra della Svizzera Italiana, Dresdner Philharmonie, and at festivals from Lugano to Evian. His repertoire merges <em>bel canto</em> lyricism with a deeply expressive, almost spoken technique — the signature work is <em>Carmen Fantasy</em> by Buxton Orr; transcriptions of Heifetz, Kreisler and operatic and film scores recur throughout the programmes. <em>Original compositions, performed in concert, await formal publication.</em></p>
+          <p>In 2024 Beitan represented Latvia at the <em>75th Anniversary of NATO</em>, performing at the <em>National Library</em> in Washington, D.C.; further U.S. appearances include the <em>Andrew W. Mellon Auditorium</em>. Among other diplomatic engagements he has performed at the <em>United Nations in Geneva</em> at an event hosted by the Italian Embassy, and at the awards of the <em>Biennale di Venezia</em>. Beyond the concert stage he founded the Beitan Music Foundation, curating international cultural tours and museum-grade exhibitions of Stradivari, Guarneri and Amati instruments at Villa del Balbianello, Villa Mozart and the Art Museum Rīga Bourse — the latter in long-term curatorial partnership with the museum on Italian instrument programming. His curatorial work extends to fine art in national museums: he co-organised exhibitions of the American painter <em>Hunt Slonem</em> at the Latvian National Museum of Art (Rīga Bourse) and the Ġ. Eliass Jelgava Museum of Art and History.</p>
+        </div>
+        <div lang="ru"><p class="pending">Ожидает утверждённого русского текста.</p></div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ═══ II. FACT SHEET ═══════════════════════════════════════════
+       Facts published on maxbeitan.com, plus owner decisions logged in CLAUDE.md §5
+       (Lugano as base, Tecchler 1698 — both 2026-10-15). -->
+  <section id="facts" aria-labelledby="h-facts">
+    <div class="sec-head"><span class="ix">II.</span><h2 id="h-facts">Fact sheet</h2></div>
+    <dl class="facts">
+      <div><dt class="label">Name</dt><dd>Max Beitan · Maksims Beitāns</dd></div>
+      <div><dt class="label">Nationality</dt><dd>Latvian</dd></div>
+      <div><dt class="label">First study</dt><dd>Age 4 · Latvia</dd></div>
+      <div><dt class="label">International debut</dt><dd>Age 8 · Kaunas Philharmonic</dd></div>
+      <div><dt class="label">Awards</dt><dd>5 Grand Prix · 18 international competitions</dd></div>
+      <div><dt class="label">Instruments</dt><dd>Stradivari “Archinto” 1689 · David Tecchler 1698</dd></div>
+      <div><dt class="label">Civic</dt><dd>NATO 75th · Washington · UN Geneva · Biennale di Venezia</dd></div>
+      <div><dt class="label">Foundation</dt><dd>Beitan Music Foundation</dd></div>
+      <div><dt class="label">Base</dt><dd>Lugano, Switzerland</dd></div>
+      <div><dt class="label">Tours</dt><dd>Musica Viva</dd></div>
+    </dl>
+  </section>
+
+  <!-- ═══ III. QUOTES ═════════════════════════════════════════════
+       Verbatim from the live homepage (pull quote + "In their words"). -->
+  <section id="quotes" aria-labelledby="h-quotes">
+    <div class="sec-head"><span class="ix">III.</span><h2 id="h-quotes">Quotes</h2></div>
+    <div class="quotes">
+      <figure>
+        <blockquote>“I hear an Italian voice.”</blockquote>
+        <figcaption><b>Riccardo Muti</b>On Rachmaninoff, <i>Vocalise</i></figcaption>
+      </figure>
+      <figure>
+        <blockquote>“Impressive and memorable — deep performance.”</blockquote>
+        <figcaption><b>Vladimir Ashkenazy</b>After Shostakovich Cello Concerto No.&nbsp;1</figcaption>
+      </figure>
+      <figure>
+        <blockquote>“A dedicated and gifted musician — his determination will carry him far.”</blockquote>
+        <figcaption><b>Ivo Pogorelich</b>Pianist · teacher</figcaption>
+      </figure>
+      <figure>
+        <blockquote>“A very deep musician — serious, fresh ideas, a clear personal interpretation.”</blockquote>
+        <figcaption><b>Andris Nelsons</b>Music Director, Boston Symphony Orchestra</figcaption>
+      </figure>
+      <figure>
+        <blockquote>“The qualities of a great artist — astonishing technique combined with emotion, passion, creativity.”</blockquote>
+        <figcaption><b>Daniil Shafran</b>Cellist · masterclass diploma · New Names laureate</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ═══ IV. PHOTOGRAPHS ═════════════════════════════════════════
+       One <figure class="photo"> per image. The preview should be a light web
+       copy (≤ 300 KB); the download link points at the full-resolution file.
+       Fill in the photographer credit before sharing the page. -->
+  <section id="photographs" aria-labelledby="h-photos">
+    <div class="sec-head"><span class="ix">IV.</span><h2 id="h-photos">Photographs</h2></div>
+    <p class="note">High-resolution images for press use. Please credit the photographer as given.</p>
+    <div class="photos">
+      <figure class="photo">
+        <div class="frame"><img src="img/studio-tux-direct.jpg" alt="Max Beitan, cellist, studio portrait." loading="lazy" /></div>
+        <figcaption><b>Studio portrait</b>Photo: <span class="pending">credit to confirm</span><br />1200 × 829 px · JPG
+          <br /><a class="dl" href="img/studio-tux-direct.jpg" download>Download</a></figcaption>
+      </figure>
+      <figure class="photo">
+        <div class="frame"><img src="img/hero-window.jpg" alt="Max Beitan with his cello beside a tall window." loading="lazy" /></div>
+        <figcaption><b>By the window</b>Photo: <span class="pending">credit to confirm</span><br />1520 × 1900 px · JPG
+          <br /><a class="dl" href="img/hero-window.jpg" download>Download</a></figcaption>
+      </figure>
+      <figure class="photo">
+        <!-- Full file is 10 MB: needs a web preview before it can be shown here -->
+        <div class="frame"><span class="ph">Preview pending<br />beitan-archinto-hall.jpg</span></div>
+        <figcaption><b>With the Stradivari “Archinto”</b>Photo: <span class="pending">credit to confirm</span><br />5143 × 3429 px · JPG · 10 MB
+          <br /><a class="dl" href="img/beitan-archinto-hall.jpg" download>Download</a></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ═══ V. TECHNICAL RIDER ══════════════════════════════════════
+       Categories only. Every requirement must come from Max; nothing here is assumed. -->
+  <section id="rider" aria-labelledby="h-rider">
+    <div class="sec-head"><span class="ix">V.</span><h2 id="h-rider">Technical rider</h2></div>
+    <dl class="rider">
+      <div><dt class="label">Stage &amp; seating</dt><dd class="pending">To be supplied</dd></div>
+      <div><dt class="label">Lighting</dt><dd class="pending">To be supplied</dd></div>
+      <div><dt class="label">Sound</dt><dd class="pending">To be supplied</dd></div>
+      <div><dt class="label">Rehearsal</dt><dd class="pending">To be supplied</dd></div>
+      <div><dt class="label">Instrument</dt><dd class="pending">To be supplied</dd></div>
+      <div><dt class="label">Dressing room</dt><dd class="pending">To be supplied</dd></div>
+    </dl>
+  </section>
+
+  <!-- ═══ VI. CONTACT ═════════════════════════════════════════════ -->
+  <section id="contact" aria-labelledby="h-contact">
+    <div class="sec-head"><span class="ix">VI.</span><h2 id="h-contact">Contact</h2></div>
+    <div class="contact">
+      <div><p class="label">Press</p><a href="mailto:pr@maxbeitan.com">pr@maxbeitan.com</a></div>
+      <div><p class="label">Engagements</p><a href="mailto:max@maxbeitan.com">max@maxbeitan.com</a></div>
+    </div>
+  </section>
+</main>
+
+<footer><p class="label"><b>©</b> MMXXVI · Max Beitan</p></footer>
+
+<script>
+  // Biography language (EN / RU). Remembered per visitor; English by default.
+  (function () {
+    const root = document.documentElement;
+    const buttons = document.querySelectorAll('[data-set-lang]');
+    function setLang(l) {
+      root.setAttribute('data-lang', l);
+      buttons.forEach(b => b.setAttribute('aria-pressed', b.dataset.setLang === l ? 'true' : 'false'));
+      try { localStorage.setItem('mb-press-lang', l); } catch (e) {}
+      document.querySelectorAll('.bio').forEach(update);
+    }
+    buttons.forEach(b => b.addEventListener('click', () => setLang(b.dataset.setLang)));
+
+    // Word counter + copy, per biography, for the visible language only
+    function visibleText(bio) {
+      const l = root.getAttribute('data-lang') === 'ru' ? 'ru' : 'en';
+      const block = bio.querySelector('.bio-text [lang="' + l + '"]');
+      if (!block) return '';
+      return [...block.querySelectorAll('p:not(.pending):not(.src)')].map(p => p.textContent.trim()).join('\n\n');
+    }
+    function update(bio) {
+      const text = visibleText(bio);
+      const count = bio.querySelector('.count');
+      const btn = bio.querySelector('.copy');
+      const words = text ? text.split(/\s+/).filter(w => /[\p{L}\p{N}]/u.test(w)).length : 0;
+      const [min, max] = (bio.dataset.target || '').split('-').map(n => parseInt(n, 10));
+      btn.disabled = !words;
+      if (!words) { count.textContent = 'No approved text yet'; count.classList.remove('off'); return; }
+      const off = (min && words < min) || (max && words > max);
+      count.textContent = words + ' words' + (off ? ' · outside target' : '');
+      count.classList.toggle('off', !!off);
+    }
+    document.querySelectorAll('.bio').forEach(bio => {
+      bio.querySelector('.copy').addEventListener('click', async (e) => {
+        const btn = e.currentTarget, text = visibleText(bio);
+        try { await navigator.clipboard.writeText(text); }
+        catch (err) {
+          const ta = Object.assign(document.createElement('textarea'), { value: text });
+          document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
+        }
+        btn.textContent = 'Copied';
+        setTimeout(() => { btn.textContent = 'Copy text'; }, 1600);
+      });
+    });
+
+    let saved = null;
+    try { saved = localStorage.getItem('mb-press-lang'); } catch (e) {}
+    setLang(saved === 'ru' ? 'ru' : 'en');
+  })();
+
+  // Broken previews (e.g. a file not yet uploaded) fall back to a labelled panel
+  document.querySelectorAll('.photo .frame img').forEach(img => {
+    img.addEventListener('error', () => {
+      const s = document.createElement('span');
+      s.className = 'ph'; s.textContent = 'Preview unavailable · ' + img.getAttribute('src').split('/').pop();
+      img.replaceWith(s);
+    });
+  });
+</script>
+</body>
+</html>
