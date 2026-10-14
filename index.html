@@ -107,8 +107,7 @@
       "location": { "@type": "Place", "name": "Von Meck's Liepupe Manor",
         "address": { "@type": "PostalAddress", "addressLocality": "Liepupe", "addressCountry": "LV" } },
       "performer": { "@type": "Person", "name": "Max Beitan", "url": "https://maxbeitan.com" },
-      "organizer": { "@type": "Organization", "name": "Beitan Music Foundation", "url": "https://beitanmusicfoundation.org" },
-      "offers": { "@type": "Offer", "url": "https://maxbeitan.com/#contact", "price": "0", "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "validFrom": "2026-06-19" }
+      "organizer": { "@type": "Organization", "name": "Beitan Music Foundation", "url": "https://beitanmusicfoundation.org" }
     },
     {
       "@type": "MusicEvent",
@@ -122,8 +121,7 @@
       "location": { "@type": "Place", "name": "Palazzo Lanza",
         "address": { "@type": "PostalAddress", "addressLocality": "Palermo", "addressCountry": "IT" } },
       "performer": { "@type": "Person", "name": "Max Beitan", "url": "https://maxbeitan.com" },
-      "organizer": { "@type": "Organization", "name": "Beitan Music Foundation", "url": "https://beitanmusicfoundation.org" },
-      "offers": { "@type": "Offer", "url": "https://maxbeitan.com/#contact", "price": "0", "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "validFrom": "2026-06-19" }
+      "organizer": { "@type": "Organization", "name": "Beitan Music Foundation", "url": "https://beitanmusicfoundation.org" }
     },
     {
       "@type": "MusicEvent",
@@ -137,23 +135,7 @@
       "location": { "@type": "Place", "name": "Palazzo Raffadali",
         "address": { "@type": "PostalAddress", "addressLocality": "Palermo", "addressCountry": "IT" } },
       "performer": { "@type": "Person", "name": "Max Beitan", "url": "https://maxbeitan.com" },
-      "organizer": { "@type": "Organization", "name": "Beitan Music Foundation", "url": "https://beitanmusicfoundation.org" },
-      "offers": { "@type": "Offer", "url": "https://maxbeitan.com/#contact", "price": "0", "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "validFrom": "2026-06-19" }
-    },
-    {
-      "@type": "MusicEvent",
-      "name": "40th Anniversary Celebration — Gala Concert",
-      "description": "A gala celebration concert with Max Beitan, cello, in Riga.",
-      "image": "https://maxbeitan.com/img/studio-tux-direct.jpg",
-      "startDate": "2026-12-07T19:00:00+02:00",
-      "endDate": "2026-12-07T21:00:00+02:00",
-      "eventStatus": "https://schema.org/EventScheduled",
-      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-      "location": { "@type": "Place", "name": "Riga (venue to be confirmed)",
-        "address": { "@type": "PostalAddress", "addressLocality": "Riga", "addressCountry": "LV" } },
-      "performer": { "@type": "Person", "name": "Max Beitan", "url": "https://maxbeitan.com" },
-      "organizer": { "@type": "Organization", "name": "Beitan Music Foundation", "url": "https://beitanmusicfoundation.org" },
-      "offers": { "@type": "Offer", "url": "https://maxbeitan.com/#contact", "price": "0", "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "validFrom": "2026-06-19" }
+      "organizer": { "@type": "Organization", "name": "Beitan Music Foundation", "url": "https://beitanmusicfoundation.org" }
     }
   ]
 }
@@ -1052,50 +1034,6 @@
 </section>
 
 
-<!-- ────────── NEXT CONCERT (добавлено 3 августа) ────────── -->
-<style>
-  .nextup{
-    position:relative;z-index:3;background:var(--panel,#141C31);
-    border-top:1px solid var(--rule,rgba(176,141,87,.28));
-    border-bottom:1px solid var(--rule,rgba(176,141,87,.28));
-    padding:20px 26px;
-  }
-  .nextup-in{
-    max-width:var(--maxw,1480px);margin:0 auto;display:flex;flex-wrap:wrap;
-    align-items:center;justify-content:center;gap:12px 30px;text-align:center;
-  }
-  .nextup .tag{
-    font-family:var(--sans);font-size:10px;letter-spacing:.28em;text-transform:uppercase;
-    color:var(--accent,#B08D57);white-space:nowrap;
-  }
-  .nextup .ttl{
-    font-family:var(--serif);font-size:clamp(20px,3.4vw,27px);font-weight:400;
-    color:var(--text,#ECEFF6);line-height:1.2;
-  }
-  .nextup .ttl em{font-style:italic;color:var(--accent,#B08D57)}
-  .nextup .meta{
-    font-family:var(--sans);font-size:12.5px;letter-spacing:.05em;
-    color:var(--muted,#8F99AE);
-  }
-  .nextup .go{
-    font-family:var(--sans);font-size:10.5px;letter-spacing:.20em;text-transform:uppercase;
-    color:var(--text,#ECEFF6);text-decoration:none;border:1px solid var(--accent,#B08D57);
-    padding:12px 26px;white-space:nowrap;transition:background .35s ease,color .35s ease;
-  }
-  .nextup .go:hover{background:var(--accent,#B08D57);color:var(--bg,#111A2E)}
-  @media(max-width:760px){
-    .nextup-in{flex-direction:column;gap:10px}
-    .nextup{padding:22px 20px}
-  }
-</style>
-<section class="nextup" data-screen-label="Next concert">
-  <div class="nextup-in">
-    <span class="tag">Next concert</span>
-    <span class="ttl">La Dolce <em>Vita</em></span>
-    <span class="meta">Thu 13 August &middot; 19:00 &middot; Retro Hall, Mikhail Chekhov Riga Russian Theatre</span>
-    <a class="go" href="events/2026-08-13-la-dolce-vita-riga/">Programme &amp; tickets</a>
-  </div>
-</section>
 
 <!-- ────────── PULL QUOTE ────────── -->
 <section class="quote has-bg reveal" data-screen-label="Pull quote">
@@ -1264,6 +1202,14 @@
     text-transform:uppercase;color:#B08D57;text-decoration:none;white-space:nowrap}
   .cal-tickets:hover{text-decoration:underline}
   @media(max-width:640px){.cal-tickets{display:block;margin:8px 0 0}}
+  /* concert status: Past now; the same tag carries Sold Out / RSVP later */
+  .cal-status{display:inline-block;margin-left:13px;padding:2px 9px;border:1px solid var(--rule-2);
+    color:var(--muted);letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}
+  .cal-row.is-past h3,.cal-row.is-past .cal-date b{color:var(--muted)}
+  .cal-row.is-past .cal-date{color:var(--accent-soft)}
+  .venue > .cal-type:first-child{margin-left:0;padding-left:0;border-left:0}
+  .cal-sub{margin:56px 0 0;padding-bottom:16px;font-family:var(--sans);font-weight:300;font-size:11px;
+    letter-spacing:.34em;text-transform:uppercase;color:var(--muted)}
 </style>
 
 <!-- ────────── CONCERT CALENDAR ────────── -->
@@ -1275,40 +1221,44 @@
   </div>
   <div class="cal-list reveal stagger">
     <div class="cal-row">
-      <div class="cal-date">Aug<b>13</b></div>
+      <div class="cal-date">Dec<b>07</b></div>
       <div class="cal-main">
-        <h3><a class="cal-link" href="events/2026-08-13-la-dolce-vita-riga/">La Dolce Vita &middot; Mikhail Chekhov Riga Russian Theatre</a></h3>
-        <div class="venue">Riga, Latvia<span class="cal-type">Solo concert</span>
-          <a class="cal-tickets" href="events/2026-08-13-la-dolce-vita-riga/">Programme &amp; tickets <span aria-hidden="true">&rarr;</span></a>
-        </div>
+        <h3>Private Event</h3>
+        <div class="venue"><span class="cal-type">Musica Viva</span></div>
       </div>
     </div>
-    <div class="cal-row">
-      <div class="cal-date">Aug<b>16</b></div>
-      <div class="cal-main">
-        <h3>Von Meck's Liepupe Manor</h3>
-        <div class="venue">Liepupe, Latvia<span class="cal-type">Musical Salon</span></div>
-      </div>
-    </div>
-    <div class="cal-row">
-      <div class="cal-date">Oct<b>02</b></div>
-      <div class="cal-main">
-        <h3>Palazzo Lanza</h3>
-        <div class="venue">Palermo, Italy<span class="cal-type">Salon Concert</span></div>
-      </div>
-    </div>
-    <div class="cal-row">
+  </div>
+
+  <p class="cal-sub">Past · 2026</p>
+  <div class="cal-list cal-past reveal stagger">
+    <div class="cal-row is-past">
       <div class="cal-date">Oct<b>03</b></div>
       <div class="cal-main">
         <h3>Palazzo Raffadali</h3>
-        <div class="venue">Palermo, Italy<span class="cal-type">Salon Concert</span></div>
+        <div class="venue">Palermo, Italy<span class="cal-type">Salon Concert</span><span class="cal-status">Past</span></div>
       </div>
     </div>
-    <div class="cal-row">
-      <div class="cal-date">Dec<b>07</b></div>
+    <div class="cal-row is-past">
+      <div class="cal-date">Oct<b>02</b></div>
       <div class="cal-main">
-        <h3>40th Anniversary Celebration Concert</h3>
-        <div class="venue">Riga, Latvia<span class="cal-type">Gala Concert</span></div>
+        <h3>Palazzo Lanza</h3>
+        <div class="venue">Palermo, Italy<span class="cal-type">Salon Concert</span><span class="cal-status">Past</span></div>
+      </div>
+    </div>
+    <div class="cal-row is-past">
+      <div class="cal-date">Aug<b>16</b></div>
+      <div class="cal-main">
+        <h3>Von Meck's Liepupe Manor</h3>
+        <div class="venue">Liepupe, Latvia<span class="cal-type">Musical Salon</span><span class="cal-status">Past</span></div>
+      </div>
+    </div>
+    <div class="cal-row is-past">
+      <div class="cal-date">Aug<b>13</b></div>
+      <div class="cal-main">
+        <h3><a class="cal-link" href="events/2026-08-13-la-dolce-vita-riga/">La Dolce Vita &middot; Mikhail Chekhov Riga Russian Theatre</a></h3>
+        <div class="venue">Riga, Latvia<span class="cal-type">Solo concert</span><span class="cal-status">Past</span>
+          <a class="cal-tickets" href="events/2026-08-13-la-dolce-vita-riga/">Programme <span aria-hidden="true">&rarr;</span></a>
+        </div>
       </div>
     </div>
   </div>
