@@ -224,7 +224,7 @@
   }
 
   .eyebrow {
-    font-family: var(--sans); font-weight: 300; font-size: 11px;
+    font-family: var(--sans); font-weight: 300; font-size: 12px;
     letter-spacing: .34em; text-transform: uppercase; color: var(--muted);
   }
   .eyebrow .mark { color: var(--accent); }
@@ -267,7 +267,7 @@
   .topbar nav { display: flex; gap: 34px; }
   .topbar nav a {
     position: relative;
-    font-family: var(--sans); font-weight: 300; font-size: 10.5px;
+    font-family: var(--sans); font-weight: 300; font-size: 12px;
     letter-spacing: .26em; text-transform: uppercase; color: #C9C5BC;
     padding: 6px 0;
   }
@@ -323,7 +323,8 @@
   }
   html[data-theme="light"] .tt-knob { transform: translate(28px, -50%); }
 
-  @media (max-width: 920px){
+  /* 8 nav items at 12px need ~910px: collapse to the menu below 1180px */
+  @media (max-width: 1180px){
     .navtoggle { display: block; }
     .topbar nav {
       position: fixed; inset: 0; z-index: 110;
@@ -417,7 +418,7 @@
     text-align: center; padding: 0 6vw;
   }
   .stage .kicker {
-    font-family: var(--sans); font-weight: 300; font-size: 11px;
+    font-family: var(--sans); font-weight: 300; font-size: 12px;
     letter-spacing: .5em; text-transform: uppercase; color: var(--accent);
     margin-bottom: 30px;
   }
@@ -440,7 +441,7 @@
   .stage .sub {
     margin-top: 34px;
     font-family: var(--sans); font-weight: 300;
-    font-size: 11.5px; letter-spacing: .42em; text-transform: uppercase;
+    font-size: 12px; letter-spacing: .42em; text-transform: uppercase;
     color: var(--platinum);
     text-shadow: 0 1px 12px rgba(0,0,0,.6);
   }
@@ -457,7 +458,7 @@
     position: absolute; left:50%; bottom: 30px; z-index: 5;
     transform: translateX(-50%);
     display: flex; flex-direction: column; align-items: center; gap: 12px;
-    font-family: var(--sans); font-size: 9px; letter-spacing: .34em; text-transform: uppercase;
+    font-family: var(--sans); font-size: 12px; letter-spacing: .34em; text-transform: uppercase;
     color: var(--muted);
     opacity: 0; transition: opacity 1s ease 1.4s;
   }
@@ -471,11 +472,11 @@
     max-width: var(--maxw); margin: 0 auto 48px;
   }
   .section-head .ix {
-    font-family: var(--sans); font-weight: 300; font-size: 11px;
+    font-family: var(--sans); font-weight: 300; font-size: 12px;
     letter-spacing: .3em; color: var(--accent);
   }
   .section-head .ttl {
-    font-family: var(--sans); font-weight: 300; font-size: 11px;
+    font-family: var(--sans); font-weight: 300; font-size: 12px;
     letter-spacing: .34em; text-transform: uppercase; color: var(--muted);
   }
   .section-head .rule { flex:1; height:1px; background: var(--rule); }
@@ -538,7 +539,7 @@
   }
   .quote cite {
     display: block; margin-top: 42px;
-    font-family: var(--sans); font-style: normal; font-size: 11px;
+    font-family: var(--sans); font-style: normal; font-size: 12px;
     letter-spacing: .3em; text-transform: uppercase; color: var(--muted);
   }
   .quote cite em { color: var(--platinum); font-style: italic; font-family: var(--serif); font-size: 1.4em; letter-spacing:.02em; text-transform:none; }
@@ -598,11 +599,11 @@
   }
   .endorse figcaption { display: flex; flex-direction: column; gap: 7px; margin-top: auto; }
   .endorse .who {
-    font-family: var(--sans); font-weight: 400; font-size: 10px;
+    font-family: var(--sans); font-weight: 400; font-size: 12px;
     letter-spacing: .26em; text-transform: uppercase; color: var(--text);
   }
   .endorse .role {
-    font-family: var(--sans); font-weight: 300; font-size: 9.5px;
+    font-family: var(--sans); font-weight: 300; font-size: 12px;
     letter-spacing: .14em; color: var(--muted); line-height: 1.5;
   }
 
@@ -634,7 +635,7 @@
   }
   .pillar p em { color: var(--text); font-style: italic; }
   .cta {
-    font-family: var(--sans); font-weight: 400; font-size: 10.5px;
+    font-family: var(--sans); font-weight: 400; font-size: 12px;
     letter-spacing: .28em; text-transform: uppercase; color: var(--platinum);
     padding-bottom: 8px; position: relative;
     display: inline-flex; align-items: center; gap: 12px;
@@ -680,7 +681,7 @@
     font-family: var(--serif); font-style:italic; font-size: 22px; color: var(--muted);
   }
   .bio-caption {
-    font-family: var(--sans); font-weight: 300; font-size: 10px;
+    font-family: var(--sans); font-weight: 300; font-size: 12px;
     letter-spacing: .24em; text-transform: uppercase; color: var(--muted);
     line-height: 1.6;
   }
@@ -689,7 +690,7 @@
     font-size: clamp(44px, 4.6vw, 72px); line-height: 1; color: var(--text);
     margin-top: 6px;
   }
-  .bio h2 .small { display:block; font-size: .26em; letter-spacing:.34em; text-transform:uppercase; font-family:var(--sans); color:var(--accent); margin-bottom: 14px; }
+  .bio h2 .small { display:block; font-size: max(12px, .26em); letter-spacing:.34em; text-transform:uppercase; font-family:var(--sans); color:var(--accent); margin-bottom: 14px; }
   .bio .body p {
     font-family: var(--serif); font-size: 20px; line-height: 1.62;
     color: var(--platinum); margin-bottom: 24px; max-width: 62ch; text-wrap: pretty;
@@ -715,13 +716,13 @@
   .facts li:nth-child(odd){ padding-right: 32px; }
   .facts li span {
     display: block;
-    font-family: var(--sans); font-weight: 300; font-size: 9.5px;
+    font-family: var(--sans); font-weight: 300; font-size: 12px;
     letter-spacing: .26em; text-transform: uppercase; color: var(--accent-soft);
     margin-bottom: 8px;
   }
   .bio .dl {
     display:inline-flex; margin-top:38px; font-family:var(--sans); font-weight:400;
-    font-size:10.5px; letter-spacing:.26em; text-transform:uppercase; color:var(--platinum);
+    font-size:12px; letter-spacing:.26em; text-transform:uppercase; color:var(--platinum);
     padding:15px 26px; border:1px solid var(--rule-2); align-items:center; gap:14px;
     transition: border-color .35s ease, color .35s ease, background .35s ease;
   }
@@ -762,7 +763,7 @@
   }
   .plate .label { position: absolute; left: 20px; right: 20px; bottom: 20px; z-index: 2; }
   .plate .tag {
-    font-family: var(--sans); font-size: 9.5px; font-weight: 400;
+    font-family: var(--sans); font-size: 12px; font-weight: 400;
     letter-spacing: .28em; text-transform: uppercase; color: var(--accent);
     margin-bottom: 10px; display: inline-block;
     text-shadow: 0 1px 6px rgba(0,0,0,.9);
@@ -791,7 +792,7 @@
   }
   .channels { display: flex; justify-content: center; gap: 22px; flex-wrap: wrap; }
   .channels a {
-    font-family: var(--sans); font-weight: 400; font-size: 10.5px;
+    font-family: var(--sans); font-weight: 400; font-size: 12px;
     letter-spacing: .26em; text-transform: uppercase; color: var(--platinum);
     padding: 16px 30px; border: 1px solid var(--rule-2); position: relative; overflow:hidden;
     transition: color .4s ease, border-color .4s ease;
@@ -815,7 +816,7 @@
   .press-titles .t { transition: color .35s ease; }
   .press-titles .t:hover { color: var(--accent); }
   .press-foot {
-    margin-top: 44px; font-family: var(--sans); font-weight: 300; font-size: 10.5px;
+    margin-top: 44px; font-family: var(--sans); font-weight: 300; font-size: 12px;
     letter-spacing: .22em; color: var(--muted);
   }
   .press-foot a { color: var(--platinum); border-bottom: 1px solid var(--rule-2); padding-bottom: 2px; transition: color .3s, border-color .3s; }
@@ -829,7 +830,7 @@
   }
   footer .lines {
     display: flex; justify-content: center; gap: 18px 40px; flex-wrap: wrap;
-    font-family: var(--sans); font-weight: 300; font-size: 10.5px;
+    font-family: var(--sans); font-weight: 300; font-size: 12px;
     letter-spacing: .22em; text-transform: uppercase; color: var(--muted);
   }
   footer .lines a { position: relative; padding-bottom: 4px; transition: color .3s; }
@@ -838,7 +839,7 @@
   footer .lines a:hover::after { right:0; }
   footer .copy {
     margin-top: 52px;
-    font-family: var(--sans); font-weight: 300; font-size: 10px;
+    font-family: var(--sans); font-weight: 300; font-size: 12px;
     letter-spacing: .28em; color: var(--muted);
   }
   footer .copy .mark { color: var(--accent-soft); }
@@ -873,7 +874,7 @@
     .endorse { border-right:0; }
     .plates { grid-template-columns: 1fr; }
     .quote q { font-size: 23px; }
-    .stage .sub { font-size: 9px; letter-spacing: .2em; }
+    .stage .sub { font-size: 12px; letter-spacing: .2em; }
     .stage .sub span { margin: 0 8px; }
   }
 
@@ -887,7 +888,7 @@
   }
   .cal-row:first-child { border-top: 1px solid var(--rule); }
   .cal-date {
-    font-family: var(--sans); font-weight: 300; font-size: 10.5px;
+    font-family: var(--sans); font-weight: 300; font-size: 12px;
     letter-spacing: .26em; text-transform: uppercase; color: var(--accent);
     line-height: 1.4;
   }
@@ -900,7 +901,7 @@
     line-height: 1.18; color: var(--text); text-wrap: pretty;
   }
   .cal-main .venue {
-    margin-top: 9px; font-family: var(--sans); font-weight: 300; font-size: 10.5px;
+    margin-top: 9px; font-family: var(--sans); font-weight: 300; font-size: 12px;
     letter-spacing: .16em; color: var(--muted); text-transform: uppercase;
   }
   .cal-main .cal-type {
@@ -953,7 +954,7 @@
   .logo-item:hover .logo-tile { transform: translateY(-5px); }
   .logo-tile img { max-width: 184px; max-height: 58px; width: auto; height: auto; display: block; }
   .logo-cap {
-    margin-top: 18px; font-family: var(--sans); font-weight: 300; font-size: 10px;
+    margin-top: 18px; font-family: var(--sans); font-weight: 300; font-size: 12px;
     letter-spacing: .24em; text-transform: uppercase; color: var(--muted);
   }
 
@@ -963,7 +964,7 @@
   .field { margin-bottom: 28px; }
   .field.full { grid-column: 1 / -1; }
   .field label {
-    display: block; font-family: var(--sans); font-weight: 300; font-size: 9.5px;
+    display: block; font-family: var(--sans); font-weight: 300; font-size: 12px;
     letter-spacing: .26em; text-transform: uppercase; color: var(--muted); margin-bottom: 9px;
   }
   .field input, .field textarea {
@@ -975,7 +976,7 @@
   .field input:focus, .field textarea:focus { border-color: var(--accent); }
   .field input::placeholder, .field textarea::placeholder { color: var(--muted); opacity: .55; }
   .booking .submit {
-    font-family: var(--sans); font-weight: 400; font-size: 10.5px;
+    font-family: var(--sans); font-weight: 400; font-size: 12px;
     letter-spacing: .28em; text-transform: uppercase; color: var(--text);
     background: transparent; border: 1px solid var(--accent-soft); cursor: pointer;
     padding: 16px 34px; display: inline-flex; align-items: center; gap: 12px;
@@ -985,7 +986,7 @@
   .booking .submit:hover { background: var(--accent); color: #111A2E; border-color: var(--accent); }
   .booking .submit:hover .arr { color: #111A2E; transform: translateX(5px); }
   .booking .formnote {
-    font-family: var(--sans); font-weight: 300; font-size: 10px; letter-spacing: .12em;
+    font-family: var(--sans); font-weight: 300; font-size: 12px; letter-spacing: .12em;
     color: var(--muted); margin-top: 18px; line-height: 1.6;
   }
   .booking .formok {
@@ -1028,6 +1029,8 @@
     </button>
   </div>
 </header>
+
+<main id="main">
 
 <!-- ────────── STAGE ────────── -->
 <section class="stage" id="top" data-screen-label="Hero">
@@ -1139,7 +1142,7 @@
       <div class="bio-caption">With the Stradivari “Archinto” 1689 cello</div>
     </div>
     <div class="body reveal">
-      <h2><span class="small">Biography</span>A life in sound.</h2>
+      <h2><span class="small">Biography</span> A life in sound.</h2>
       <p style="margin-top:32px;">A Latvian cellist celebrated for emotive performances and innovative interpretations. Max Beitan's musical journey began at the age of four in Latvia; he made his international debut at eight with the Kaunas Philharmonic, and at nine won his second Grand Prix at the <em>Liezen International Cello Competition</em> — drawing the attention of <em>Daniil Shafran</em>, who invited him to study privately.</p>
 
       <p>Mentorships followed with <em>Johannes Goritzki</em>, <em>Victoria Yagling</em>, <em>Natalia Gutman</em>, and the pianist <em>Ivo Pogorelich</em>, whose teaching has left an indelible mark on Beitan's approach to performance. Triumphs in 18 international competitions and five Grand Prix; Honorary Swiss Government Grant holder.</p>
@@ -1205,17 +1208,17 @@
   .cal-link{color:inherit;text-decoration:none;border-bottom:1px solid rgba(176,141,87,.45);
     transition:border-color .3s ease,color .3s ease}
   .cal-link:hover{color:#B08D57;border-color:#B08D57}
-  .cal-tickets{display:inline-block;margin-left:14px;font-size:.72em;letter-spacing:.12em;
+  .cal-tickets{display:inline-block;margin-left:14px;padding:12px 0;font-size:12px;letter-spacing:.12em;
     text-transform:uppercase;color:#B08D57;text-decoration:none;white-space:nowrap}
   .cal-tickets:hover{text-decoration:underline}
-  @media(max-width:640px){.cal-tickets{display:block;margin:8px 0 0}}
+  @media(max-width:640px){.cal-tickets{display:block;margin:0;padding:12px 0 4px}}
   /* concert status: Past now; the same tag carries Sold Out / RSVP later */
   .cal-status{display:inline-block;margin-left:13px;padding:2px 9px;border:1px solid var(--rule-2);
     color:var(--muted);letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}
   .cal-row.is-past h3,.cal-row.is-past .cal-date b{color:var(--muted)}
   .cal-row.is-past .cal-date{color:var(--accent-soft)}
   .venue > .cal-type:first-child{margin-left:0;padding-left:0;border-left:0}
-  .cal-sub{margin:56px 0 0;padding-bottom:16px;font-family:var(--sans);font-weight:300;font-size:11px;
+  .cal-sub{margin:56px 0 0;padding-bottom:16px;font-family:var(--sans);font-weight:300;font-size:12px;
     letter-spacing:.34em;text-transform:uppercase;color:var(--muted)}
 </style>
 
@@ -1299,7 +1302,7 @@
       width:13px;height:16px;border-left:4px solid #B08D57;border-right:4px solid #B08D57}
     .audio-label{flex:1 1 auto;display:flex;flex-direction:column;gap:3px}
     .audio-title{font-family:var(--serif);font-size:1.2rem;letter-spacing:.01em;color:#ECEFF6}
-    .audio-meta{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(236,239,246,.62)}
+    .audio-meta{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(236,239,246,.62)}
     .audio-time{flex:0 0 auto;font-size:.78rem;color:rgba(236,239,246,.6);font-variant-numeric:tabular-nums;
       min-width:92px;text-align:right;letter-spacing:.04em}
   </style>
@@ -1367,6 +1370,8 @@
 </section>
 
 <!-- ────────── FOOT ────────── -->
+</main>
+
 <footer id="contact" data-screen-label="Contact">
   <img class="foot-mono" src="img/mb-monogram.svg" alt="Max Beitan monogram" />
   <p class="signoff">For press, bookings and patronage.</p>
