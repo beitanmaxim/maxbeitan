@@ -24,7 +24,7 @@
 
 ## 2. КОНТЕКСТ И ДНК БРЕНДА
 - **Персона:** Максим Бейтан (Max Beitan) — латвийский виолончелист-виртуоз, лауреат международных конкурсов, основатель Beitan Music Foundation.
-- **Ключевые активы:** Исторические инструменты музейного класса — Antonio Stradivari “Archinto” (1689) и David Tecchler (1698).
+- **Исторические инструменты (опыт выступлений, не владение):** Antonio Stradivari “Archinto” (1689), Antonio Stradivari “De Munck”, David Tecchler (1698). Писать только как опыт или в прошедшем времени, никогда «plays / his instruments». Образец: *“Throughout his career, Max Beitan has performed on several historic instruments of museum calibre, including the Stradivari ‘Archinto’, the Stradivari ‘De Munck’, and a David Tecchler (1698).”* В фактбоксах заголовок «Instruments performed».
 - **Позиционирование:** Академическая классика, закрытые туры Musica Viva, экспертный арт-консалтинг (Stradivari Advisory).
 - **Контакты по умолчанию:** Email: max@maxbeitan.com, pr@maxbeitan.com. Город базы не указывается (см. §5).
 
@@ -41,6 +41,7 @@
 ## 5. Решения владельца (журнал)
 - **2026-10-15 · Лугано (окончательно):** не указывать Лугано в качестве базы артиста на главной странице и в промо-материалах (title, og, hero, био, футер, schema.org, press.html, страницы событий). Временный возврат в `2b0c9c9` отменён в тот же день. Лугано как площадка (LAC Lugano, Musica Viva, фестивали, консерватория) упоминается как факт, не как база.
 - **2026-10-15 · David Tecchler** — год 1698 подтверждён владельцем.
+- **2026-10-15 · Инструменты:** формулировки только в статусе опыта (см. §2); добавлен Stradivari “De Munck” (год не указан владельцем, не добавлять).
 - **2026-10-15 · Афиша:** прошедшие концерты получают статус Past; `price: "0"` в JSON-LD запрещён. 5–6 декабря 2026 — 40th Anniversary Gala, Grand Ballroom, Grand Hotel Kempinski Riga, статус Announced, RSVP через pr@maxbeitan.com (заменяет заглушку «7 декабря · Private Event»). Цены и организатора в JSON-LD не указывать, пока их не подтвердит владелец.
 
 ---
