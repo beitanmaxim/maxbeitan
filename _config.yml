@@ -1,0 +1,6 @@
+# GitHub Pages runs Jekyll over this repo and publishes every file it finds.
+# Internal notes listed here stay in git but are not served on maxbeitan.com.
+exclude:
+  - CLAUDE.md
+  - "README-ЧИТАТЬ-ПЕРВЫМ.md"
+  - cookie-consent-snippet.html
