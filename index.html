@@ -140,6 +140,8 @@
   ]
 }
 </script>
+<!-- Hero photo is a CSS background: preload it so it is not discovered late (LCP) -->
+<link rel="preload" as="image" href="img/hero-window.jpg" fetchpriority="high" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet" />
@@ -211,6 +213,8 @@
     opacity: .045; mix-blend-mode: screen;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
+  /* touch screens: drop the fixed blend layer, it repaints on every scroll */
+  @media (hover: none), (pointer: coarse) { .grain { display: none; } }
   .vignette {
     position: fixed; inset: 0; z-index: 1; pointer-events: none;
     background: radial-gradient(120% 80% at 50% 30%, transparent 55%, rgba(0,0,0,.45) 100%);
@@ -1127,7 +1131,7 @@
   <div class="bio-grid">
     <div class="bio-side reveal">
       <figure class="bio-photo">
-        <img src="img/beitan-archinto-hall.jpg" alt="Max Beitan with the Stradivari “Archinto” 1689 cello in a concert hall." data-ph="Portrait" />
+        <img src="img/beitan-archinto-hall-1200.jpg" width="1200" height="800" loading="lazy" decoding="async" alt="Max Beitan with the Stradivari “Archinto” 1689 cello in a concert hall." data-ph="Portrait" />
       </figure>
       <div class="bio-caption">With the Stradivari “Archinto” 1689 cello</div>
     </div>
