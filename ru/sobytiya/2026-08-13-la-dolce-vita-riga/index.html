@@ -28,9 +28,9 @@
   default-src 'self';
   style-src   'self' 'unsafe-inline' https://fonts.googleapis.com;
   font-src    'self' https://fonts.gstatic.com;
-  img-src     'self' data: https://maxbeitan.com https://www.facebook.com;
-  script-src  'self' 'unsafe-inline' https://connect.facebook.net;
-  connect-src 'self' https://www.facebook.com;
+  img-src     'self' data: https://maxbeitan.com;
+  script-src  'self' 'unsafe-inline';
+  connect-src 'self';
   form-action 'none'; frame-src 'none'; object-src 'none'; base-uri 'self';
 " />
 <meta http-equiv="X-Frame-Options" content="DENY" />
@@ -236,23 +236,6 @@
 }
 </script>
 
-<!-- Meta Pixel. Заменить PIXEL_ID_HERE. События уходят только после согласия. -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','PIXEL_ID_HERE');
-(function(){
-  function fire(){
-    fbq('track','PageView');
-    fbq('trackCustom','ViewConcertPage',{concert:'la-dolce-vita-2026-08-13'});
-  }
-  if (typeof window.hasCookieConsent === 'function' && window.hasCookieConsent()) fire();
-  else window.addEventListener('cookieConsentGranted', fire, {once:true});
-})();
-</script>
 
 <script>
   // Ставим тему до первой отрисовки, иначе мигает
