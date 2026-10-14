@@ -749,7 +749,7 @@
   }
   .plate {
     aspect-ratio: 4/5; position: relative;
-    background-color: #0e0d11;
+    background-color: #18223A;   /* navy between the page (#111A2E) and the photos; no black */
     background-size: cover; background-position: center;
     border: 1px solid var(--rule);
     overflow: hidden;
@@ -766,7 +766,7 @@
   .plate:hover .img { transform: scale(1.05); filter: grayscale(0%) contrast(1.05); }
   .plate::after {
     content: ""; position: absolute; inset: 0; z-index: 1;
-    background: linear-gradient(0deg, rgba(10,9,12,.96) 0%, rgba(10,9,12,.55) 26%, rgba(10,9,12,0) 50%);
+    background: linear-gradient(0deg, rgba(17,26,46,.96) 0%, rgba(17,26,46,.55) 26%, rgba(17,26,46,0) 50%);
   }
   .plate .label { position: absolute; left: 20px; right: 20px; bottom: 20px; z-index: 2; }
   .plate .tag {
@@ -782,10 +782,10 @@
     text-wrap: pretty;
   }
   /* image layers (degrade gracefully behind label) */
-  .plate.press .img { background-image: url('img/lofficiel-cover-ru.jpg'); background-size: contain; background-repeat:no-repeat; background-color:#0a0a0c; }
+  .plate.press .img { background-image: url('img/lofficiel-cover-ru.jpg'); background-size: contain; background-repeat:no-repeat; background-color:#18223A; }
   .plate.civic .img { background-image: url('img/nato-bw.jpg'); background-position: center 35%; }
   .plate.riga .img  { background-image: url('img/riga-bourse-stradivari-exhibit.jpg'); background-position: center 30%; }
-  .plate.villa .img { background-image: url('img/villa-balbianello-conversation.jpg'); background-size: contain; background-repeat:no-repeat; background-color:#0a0a0c; }
+  .plate.villa .img { background-image: url('img/villa-balbianello-conversation.jpg'); background-size: contain; background-repeat:no-repeat; background-color:#18223A; }
 
   /* ── Listen & watch ─────────────────────────── */
   .listen {
