@@ -888,6 +888,13 @@
   .js-motion .reveal > * { transition: none; }          /* GSAP owns opacity and transform */
   .stage .name .w  { display: inline-block; white-space: nowrap; }
   .stage .name .ch { display: inline-block; will-change: transform; }
+  /* Pinned "practices": the section fills the viewport only while the pin is active (desktop, fine pointer) */
+  .pillars.is-pinned { min-height: 100svh; display: grid; align-content: center; }
+  .pillars.is-pinned > .section-head, .pillars.is-pinned > .pillars-grid { width: 100%; }
+  /* Hero parallax travels 48 px: give the photo layer extra height so no edge shows (desktop only) */
+  @media (min-width: 921px) and (hover: hover) and (pointer: fine) and (min-height: 640px) {
+    .js-motion .stage .photo-img { inset: -5% 0; }
+  }
 
   /* ── Responsive ─────────────────────────────── */
   @media (max-width: 920px) {
@@ -1194,7 +1201,7 @@
 <section class="bio" id="biography" data-screen-label="Biography">
   <div class="bio-grid">
     <div class="bio-side reveal">
-      <figure class="bio-photo">
+      <figure class="bio-photo" data-mask>
         <img src="img/beitan-archinto-hall-1200.jpg" width="1200" height="800" loading="lazy" decoding="async" alt="Max Beitan with the Stradivari “Archinto” 1689 cello in a concert hall." data-ph="Portrait" />
       </figure>
       <div class="bio-caption">With the Stradivari “Archinto” 1689 cello</div>
@@ -1229,28 +1236,28 @@
     <span class="rule"></span>
   </div>
   <div class="plates reveal stagger">
-    <a href="https://www.lofficielbaltic.com/lv/man/muzikas-pauze-maksims-beitans" target="_blank" rel="noopener noreferrer" class="plate press">
+    <a href="https://www.lofficielbaltic.com/lv/man/muzikas-pauze-maksims-beitans" target="_blank" rel="noopener noreferrer" class="plate press" data-mask>
       <div class="img"></div>
       <div class="label">
         <span class="tag">Press</span>
         <h3>L'Officiel Hommes — cover feature, Stradivari “Archinto”</h3>
       </div>
     </a>
-    <div class="plate civic">
+    <div class="plate civic" data-mask>
       <div class="img"></div>
       <div class="label">
         <span class="tag">Civic · 2024</span>
         <h3>Representing Latvia at the NATO 75th Anniversary — Washington, D.C.</h3>
       </div>
     </div>
-    <div class="plate riga">
+    <div class="plate riga" data-mask>
       <div class="img"></div>
       <div class="label">
         <span class="tag">Curatorial · Rīga</span>
         <h3>Stradivari Exhibition at the Art Museum Rīga Bourse</h3>
       </div>
     </div>
-    <div class="plate villa">
+    <div class="plate villa" data-mask>
       <div class="img"></div>
       <div class="label">
         <span class="tag">Curatorial · Lake Como</span>
@@ -1351,7 +1358,7 @@
 <section class="listen reveal" id="watch" data-screen-label="Watch">
   <p class="eyebrow"><span class="mark">·</span> Listen &amp; watch <span class="mark">·</span></p>
   <h3>Recordings, recitals and tour fragments — on video.</h3>
-  <div class="video-frame reveal">
+  <div class="video-frame reveal" data-mask>
     <a class="yt-facade" id="ytFacade" href="https://youtu.be/2SLiGct32r8" target="_blank" rel="noopener noreferrer" aria-label="Watch the performance on YouTube">
       <img class="yt-thumb" src="https://i.ytimg.com/vi/2SLiGct32r8/maxresdefault.jpg" alt="Max Beitan — performance" loading="lazy"
         onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/2SLiGct32r8/hqdefault.jpg';" />
@@ -1496,6 +1503,8 @@
 <script src="vendor/lenis.min.js"></script>
 <script>
   let lenis = null;   // set by initMotion(); null on reduced motion or if the vendor scripts fail
+  let motionMM = null; // gsap.matchMedia for the desktop-only effects (hero parallax, pinned practices)
+  let pinST = null;    // ScrollTrigger of the pinned practices, null when not pinned
 
   // Hero entrance
   requestAnimationFrame(() => {
@@ -1588,6 +1597,9 @@
     root.classList.add('js-motion');
     gsap.registerPlugin(ScrollTrigger);
     gsap.ticker.lagSmoothing(0);
+    // No automatic re-measure when the tab regains visibility: a refresh in the middle of a Lenis glide
+    // briefly resets the scroll position. Resize and load still re-measure.
+    ScrollTrigger.config({ autoRefreshEvents: 'DOMContentLoaded,load,resize' });
 
     // 1. Lenis smooth scroll, driven by the GSAP ticker so ScrollTrigger stays in step.
     //    Low lerp = long glide; touch screens keep native scrolling.
@@ -1603,12 +1615,53 @@
       const target = hash.length > 1 ? document.querySelector(hash) : null;
       if (!target) return;
       e.preventDefault();
+      const pinStep = { '#cellist': 0, '#foundation': 0.42, '#advisory': 0.74 }[hash];   // share of the pin run
+      if (pinST && pinStep !== undefined) {
+        lenis.scrollTo(pinST.start + (pinST.end - pinST.start) * pinStep, { duration: 1.8, easing: (t) => 1 - Math.pow(1 - t, 4) });
+        history.pushState(null, '', hash);
+        return;
+      }
       lenis.scrollTo(hash === '#top' ? 0 : target, {
         offset: hash === '#top' ? 0 : -(topbar.offsetHeight + 8),
         duration: 1.8,
         easing: (t) => 1 - Math.pow(1 - t, 4)            // ease-out quart, no overshoot
       });
       history.pushState(null, '', hash);
+    });
+
+    // 1b. Desktop with a mouse only: hero photo parallax + pinned practices.
+    //     Phones and touch screens keep native scrolling with no pin and no parallax.
+    motionMM = gsap.matchMedia();
+    motionMM.add('(min-width: 921px) and (hover: hover) and (pointer: fine) and (min-height: 640px)', () => {
+      // Soft hero parallax: the photo drifts 48 px down while the hero scrolls away. It writes the CSS
+      // `translate` property directly: `transform` belongs to the slow zoom animation and to the mouse
+      // parallax, and an animation would override anything GSAP put there.
+      const heroImg = document.querySelector('.stage .photo-img');
+      ScrollTrigger.create({
+        trigger: '.stage', start: 'top top', end: 'bottom top',
+        onUpdate: (self) => { heroImg.style.translate = '0px ' + (48 * self.progress).toFixed(2) + 'px'; }
+      });
+
+      // Pinned practices: the section holds for ~1.2 screens while focus moves Cellist → Foundation → Advisory,
+      // then all three read at full strength before the page moves on
+      const sec = document.querySelector('.pillars');
+      const cols = [...sec.querySelectorAll('.pillar')].map((c) => [...c.children]);
+      if (cols.length === 3) {
+        sec.classList.add('is-pinned');
+        gsap.set([...cols[1], ...cols[2]], { opacity: 0.35 });
+        const tl = gsap.timeline({
+          defaults: { ease: 'sine.inOut' },
+          scrollTrigger: { trigger: sec, start: 'top top', end: '+=120%', pin: true, scrub: true, anticipatePin: 1, refreshPriority: 1 }
+        });
+        tl.to(cols[0], { opacity: 0.35, duration: 0.4 }, 0.8)
+          .to(cols[1], { opacity: 1,    duration: 0.4 }, 0.8)
+          .to(cols[1], { opacity: 0.35, duration: 0.4 }, 2.0)
+          .to(cols[2], { opacity: 1,    duration: 0.4 }, 2.0)
+          .to([...cols[0], ...cols[1]], { opacity: 1, duration: 0.6 }, 3.2)
+          .to({}, { duration: 0.2 }, 3.8);
+        pinST = tl.scrollTrigger;
+      }
+      return () => { document.querySelector('.pillars').classList.remove('is-pinned'); document.querySelector('.stage .photo-img').style.translate = ''; pinST = null; };
     });
 
     // 2. Hero title: letters rise out of a mask, ~1.1 s in total
@@ -1653,12 +1706,26 @@
       el.classList.add('in');                             // CSS end state; GSAP's inline start values override it until the tween runs
       if (el.parentElement.closest('.reveal')) return;    // nested: it travels with its parent's child
       const items = [...el.children].filter((c) => !c.matches(skip));
-      if (!items.length) return;
-      gsap.fromTo(items, { opacity: 0, y: 24 }, {
+      const fade = items.filter((c) => !c.hasAttribute('data-mask'));
+      const masks = items.filter((c) => c.hasAttribute('data-mask'));
+      if (fade.length) gsap.fromTo(fade, { opacity: 0, y: 24 }, {
         opacity: 1, y: 0, duration: 1.2, ease: 'power3.out',
-        stagger: items.length > 6 ? { amount: 0.7 } : 0.14,
+        stagger: fade.length > 6 ? { amount: 0.7 } : 0.14,
         clearProps: 'opacity,transform',
         scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+      });
+
+      // Photos: a curtain wipes left to right while the image settles from 1.16 to 1 (no overshoot)
+      masks.forEach((m, i) => {
+        const delay = window.innerWidth > 920 ? i * 0.14 : 0;
+        const st = { trigger: m, start: 'top 90%', once: true };
+        gsap.fromTo(m, { clipPath: 'inset(0% 100% 0% 0%)' }, {
+          clipPath: 'inset(0% 0% 0% 0%)', duration: 1.5, ease: 'power3.inOut', delay, clearProps: 'clipPath', scrollTrigger: st
+        });
+        const inner = m.querySelector('img, .img');
+        if (inner) gsap.fromTo(inner, { scale: 1.16 }, {
+          scale: 1, duration: 2.2, ease: 'power2.out', delay, clearProps: 'scale', scrollTrigger: { ...st }
+        });
       });
     });
 
@@ -1674,8 +1741,9 @@
       console.warn('Motion layer disabled:', err);
       root.classList.remove('js-motion');
       if (lenis) { lenis.destroy(); lenis = null; }
-      ScrollTrigger.getAll().forEach((st) => st.kill());
-      gsap.set('.reveal > *, .stage .name, .stage .name *', { clearProps: 'all' });
+      if (motionMM) { motionMM.revert(); motionMM = null; }
+      ScrollTrigger.getAll().forEach((st) => st.kill(true));
+      gsap.set('.reveal > *, .stage .name, .stage .name *, .stage .photo-img, .pillar > *, [data-mask] img, [data-mask] .img', { clearProps: 'all' });
       revealWithObserver();
     }
   } else {
