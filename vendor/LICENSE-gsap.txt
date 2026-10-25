@@ -1,0 +1,16 @@
+GSAP (gsap.min.js, ScrollTrigger.min.js), version 3.15.0
+Copyright 2026, GreenSock. All rights reserved.
+Author: Jack Doyle
+License: GSAP Standard "no charge" License
+Terms:   https://gsap.com/standard-license
+
+Notice taken verbatim from the header of the distributed files:
+  @license Copyright 2026, GreenSock. All rights reserved.
+  Subject to the terms at https://gsap.com/standard-license.
+
+The npm package (gsap@3.15.0) ships no separate licence file, and the
+terms page is rendered by an app and could not be saved as plain text
+on 2026-10-26. The full terms are at the URL above; the licence header
+inside each .min.js file is left untouched.
+
+Source of the files: https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/

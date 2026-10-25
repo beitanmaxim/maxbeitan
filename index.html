@@ -872,8 +872,22 @@
   .reveal.stagger.in > *:nth-child(4){ transition-delay:.24s; }
   .reveal.stagger.in > *:nth-child(5){ transition-delay:.32s; }
   @media (prefers-reduced-motion: reduce){
+    html { scroll-behavior: auto; }   /* anchor jumps are instant, nothing glides */
+    .scrollcue .line { animation: none; opacity: 1; }   /* the pulsing hero cue stands still */
     .reveal > *, .he, .stage .photo, .stage .photo-img { transition:none !important; animation:none !important; opacity:1 !important; transform:none !important; }
   }
+
+  /* ── Motion layer: Lenis smooth scroll + GSAP ScrollTrigger ─────────
+     Active only when the three vendor scripts loaded and the visitor has not
+     asked for reduced motion (html.js-motion). Slow, eased out, no overshoot.
+     Without it the CSS reveal above and the IntersectionObserver still work. */
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-stopped { overflow: clip; }
+  .lenis.lenis-smooth iframe { pointer-events: none; }
+  .js-motion .reveal > * { transition: none; }          /* GSAP owns opacity and transform */
+  .stage .name .w  { display: inline-block; white-space: nowrap; }
+  .stage .name .ch { display: inline-block; will-change: transform; }
 
   /* ── Responsive ─────────────────────────────── */
   @media (max-width: 920px) {
@@ -1025,7 +1039,7 @@
 <!-- ────────── TOP BAR ────────── -->
 <header class="topbar" id="topbar">
   <a class="brand" href="#top">M<b>B</b></a>
-  <nav id="nav">
+  <nav id="nav" data-lenis-prevent>
     <a href="#cellist">Cellist</a>
     <a href="#foundation">Foundation</a>
     <a href="#advisory">Advisory</a>
@@ -1056,7 +1070,7 @@
   <div class="photo" id="heroPhoto"><div class="photo-img"></div></div>
   <div class="veil"></div>
   <div class="hero-inner">
-    <h1 class="name he">Max <em>Beitan</em></h1>
+    <h1 class="name he" aria-label="Max Beitan">Max <em>Beitan</em></h1>
     <p class="sub he">Cellist <span>·</span> Founder</p>
   </div>
   <div class="scrollcue"><span class="line"></span></div>
@@ -1477,7 +1491,12 @@
 
 <div class="grain"></div>
 
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/lenis.min.js"></script>
 <script>
+  let lenis = null;   // set by initMotion(); null on reduced motion or if the vendor scripts fail
+
   // Hero entrance
   requestAnimationFrame(() => {
     requestAnimationFrame(() => document.querySelector('.stage').classList.add('ready'));
@@ -1545,16 +1564,123 @@
     document.body.classList.toggle('menu-open', open);
     navtoggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     document.body.style.overflow = open ? 'hidden' : '';
+    if (lenis) { open ? lenis.stop() : lenis.start(); }
   };
   navtoggle.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
   nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
   window.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
 
-  // Reveal on scroll
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  // ── Motion: smooth scroll, section reveal, hero text reveal ──────────
+  // Visitors who prefer reduced motion get a static page: no Lenis, no GSAP.
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  reduceMotion.addEventListener('change', () => location.reload());
+
+  // Fallback / reduced motion: the original class toggle (CSS shows everything when reduced)
+  function revealWithObserver() {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  }
+
+  function initMotion() {
+    performance.mark('motion-init-start');
+    root.classList.add('js-motion');
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.ticker.lagSmoothing(0);
+
+    // 1. Lenis smooth scroll, driven by the GSAP ticker so ScrollTrigger stays in step.
+    //    Low lerp = long glide; touch screens keep native scrolling.
+    lenis = new Lenis({ lerp: 0.075, wheelMultiplier: 0.9, smoothWheel: true });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((t) => lenis.raf(t * 1000));
+
+    // In-page links glide with Lenis (the native smooth scroll is switched off while it runs)
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      const hash = a.getAttribute('href');
+      const target = hash.length > 1 ? document.querySelector(hash) : null;
+      if (!target) return;
+      e.preventDefault();
+      lenis.scrollTo(hash === '#top' ? 0 : target, {
+        offset: hash === '#top' ? 0 : -(topbar.offsetHeight + 8),
+        duration: 1.8,
+        easing: (t) => 1 - Math.pow(1 - t, 4)            // ease-out quart, no overshoot
+      });
+      history.pushState(null, '', hash);
+    });
+
+    // 2. Hero title: letters rise out of a mask, ~1.1 s in total
+    const h1 = document.querySelector('.stage .name');
+    const letters = [];
+    if (h1) {
+      const wrap = (txt) => {
+        const frag = document.createDocumentFragment();
+        txt.split(/(\s+)/).forEach((part) => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { frag.append(part); return; }
+          const w = document.createElement('span'); w.className = 'w';
+          [...part].forEach((ch) => {
+            const c = document.createElement('span');
+            c.className = 'ch'; c.setAttribute('aria-hidden', 'true'); c.textContent = ch;
+            letters.push(c); w.append(c);
+          });
+          frag.append(w);
+        });
+        return frag;
+      };
+      const walk = (el) => [...el.childNodes].forEach((n) => {
+        if (n.nodeType === 3) n.replaceWith(wrap(n.nodeValue));
+        else if (n.nodeType === 1) walk(n);
+      });
+      walk(h1);                                           // aria-label on the <h1> carries the name
+      h1.classList.remove('he');                          // the CSS fade is replaced by the letter reveal
+      h1.style.clipPath = 'inset(-0.4em -0.6em 0 -0.6em)'; // mask while the letters travel; removed afterwards
+      gsap.set(letters, { yPercent: 105, opacity: 0 });
+      const done = () => { gsap.set(letters, { clearProps: 'transform,opacity,willChange' }); h1.style.clipPath = ''; };
+      const play = () => gsap.to(letters, {
+        yPercent: 0, opacity: 1, duration: 0.8, ease: 'power3.out', stagger: 0.04, delay: 0.1, onComplete: done
+      });
+      const fontsReady = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+      Promise.race([fontsReady, new Promise((r) => setTimeout(r, 1200))]).then(play);
+      setTimeout(done, 5000);                             // safety net: never leave the title hidden
+    }
+
+    // 3. Section reveal: children of each outermost .reveal fade up 24 px, slowly, once
+    const skip = 'script,style,.qbg,.qfade,[hidden],input[type="hidden"]';
+    document.querySelectorAll('.reveal').forEach((el) => {
+      el.classList.add('in');                             // CSS end state; GSAP's inline start values override it until the tween runs
+      if (el.parentElement.closest('.reveal')) return;    // nested: it travels with its parent's child
+      const items = [...el.children].filter((c) => !c.matches(skip));
+      if (!items.length) return;
+      gsap.fromTo(items, { opacity: 0, y: 24 }, {
+        opacity: 1, y: 0, duration: 1.2, ease: 'power3.out',
+        stagger: items.length > 6 ? { amount: 0.7 } : 0.14,
+        clearProps: 'opacity,transform',
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+      });
+    });
+
+    window.addEventListener('load', () => ScrollTrigger.refresh());
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => ScrollTrigger.refresh());
+    performance.mark('motion-init-end');
+    performance.measure('motion-init', 'motion-init-start', 'motion-init-end');
+  }
+
+  if (!reduceMotion.matches && window.gsap && window.ScrollTrigger && window.Lenis) {
+    try { initMotion(); }
+    catch (err) {                                         // anything fails: undo and show the page as it was
+      console.warn('Motion layer disabled:', err);
+      root.classList.remove('js-motion');
+      if (lenis) { lenis.destroy(); lenis = null; }
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+      gsap.set('.reveal > *, .stage .name, .stage .name *', { clearProps: 'all' });
+      revealWithObserver();
+    }
+  } else {
+    revealWithObserver();
+  }
 
   // Graceful image fallbacks
   document.querySelectorAll('.endorse-photo img').forEach(img => {
