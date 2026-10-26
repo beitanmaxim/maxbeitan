@@ -217,9 +217,19 @@
   html[data-theme="light"] .plate h3 { color: #F4F1EA; }
   html[data-theme="light"] .stage .name em,
   html[data-theme="light"] .stage .sub span,
-  html[data-theme="light"] .stage .kicker,
-  html[data-theme="light"] .plate .tag { color: #B08D57; }
+  html[data-theme="light"] .stage .kicker { color: #B08D57; }
   html[data-theme="light"] .scrollcue { color: #C9C5BC; }
+  /* Light view: photo frames use warm tones from the palette, not navy or black.
+     The cream panel colour sits between the page and the photos; the caption scrim is the deep brown
+     of the light text colour, so the white captions stay readable. */
+  html[data-theme="light"] .plate { background-color: var(--panel); border-color: var(--rule-2); }
+  html[data-theme="light"] .plate.press .img,
+  html[data-theme="light"] .plate.villa .img { background-color: var(--panel); }
+  html[data-theme="light"] .plate::after { background: linear-gradient(0deg, rgba(58,42,28,.94) 0%, rgba(58,42,28,.5) 28%, rgba(58,42,28,0) 52%); }
+  html[data-theme="light"] .plate .tag { color: #CBA972; }
+  html[data-theme="light"] .video-frame { background: var(--panel); box-shadow: 0 28px 70px rgba(58,42,28,.20); border-color: var(--rule-2); }
+  html[data-theme="light"] .yt-facade { background-color: var(--panel); }
+  html[data-theme="light"] .bio-photo { background: linear-gradient(140deg, var(--panel), var(--bg-soft)); }
   * { box-sizing:border-box; margin:0; padding:0; }
   html { scroll-behavior:smooth; }
   html, body { height:100%; }
