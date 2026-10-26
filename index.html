@@ -924,6 +924,18 @@
     -webkit-mask-image: linear-gradient(90deg, #000 var(--wipe, 100%), transparent calc(var(--wipe, 100%) + 22%));
             mask-image: linear-gradient(90deg, #000 var(--wipe, 100%), transparent calc(var(--wipe, 100%) + 22%));
   }
+  /* Practice headings: colour and a short gold line follow the column's focus (--f, 0 to 1), driven by
+     the scroll step and the cursor. Dark: text colour to bright gold. Light: deep brown to bronze. */
+  .js-motion .pillar { --gold: #D9B672; }
+  html[data-theme="light"] .js-motion .pillar, html[data-theme="light"].js-motion .pillar { --gold: #8A6A2E; }
+  .js-motion .pillar h2 { position: relative; }
+  @supports (color: color-mix(in srgb, red 50%, blue)) {
+    .js-motion .pillar h2 { color: color-mix(in srgb, var(--gold) calc(var(--f, 0) * 100%), var(--text)); }
+  }
+  .js-motion .pillar h2::after {
+    content: ""; position: absolute; left: 0; bottom: -14px; width: 56px; height: 1px;
+    background: var(--gold); transform: scaleX(var(--f, 0)); transform-origin: left center; opacity: var(--f, 0);
+  }
   html.hero-off .stage .photo-img { animation-play-state: paused; }   /* the slow zoom sleeps off screen */
   .stage .name .w  { display: inline-block; white-space: nowrap; }
   .stage .name .ch { display: inline-block; will-change: transform; }
@@ -1717,6 +1729,7 @@
           const f = Math.max(scrollFocus[i], hover[i].v);
           k.forEach((el) => { el.style.opacity = (0.35 + 0.65 * f).toFixed(3); });
           k[0].style.translate = '0px ' + (-6 * hover[i].v).toFixed(2) + 'px';              // the heading lifts a little
+          cols[i].style.setProperty('--f', f.toFixed(3));                                     // heading colour and gold line
         });
         const setProgress = (p) => {
           const t = p * 3.8, end = ramp(t, 3.2, 3.8);                                       // same schedule as before
@@ -1742,6 +1755,7 @@
         return () => {
           cleanups.forEach((fn) => fn());
           kids.flat().forEach((el) => { el.style.opacity = ''; el.style.translate = ''; });
+          cols.forEach((c) => c.style.removeProperty('--f'));
           sec.classList.remove('is-pinned');
           document.querySelector('.stage .photo-img').style.translate = '';
           pinST = null;
@@ -1756,9 +1770,13 @@
       document.querySelectorAll('.pillar').forEach((col) => {
         const kids = [...col.children];
         gsap.set(kids, { opacity: 0.55 });
+        gsap.set(col, { '--f': 0 });
         ScrollTrigger.create({
           trigger: col, start: 'top 72%', end: 'bottom 38%',
-          onToggle: (self) => gsap.to(kids, { opacity: self.isActive ? 1 : 0.55, duration: 0.8, ease: 'sine.inOut', overwrite: true })
+          onToggle: (self) => {
+            gsap.to(kids, { opacity: self.isActive ? 1 : 0.55, duration: 0.8, ease: 'sine.inOut', overwrite: true });
+            gsap.to(col, { '--f': self.isActive ? 1 : 0, duration: 0.8, ease: 'sine.inOut', overwrite: 'auto' });
+          }
         });
       });
     });
