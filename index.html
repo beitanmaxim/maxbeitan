@@ -247,7 +247,7 @@
   /* film grain + vignette overlay */
   .grain {
     position: fixed; inset: 0; z-index: 200; pointer-events: none;
-    opacity: .045; mix-blend-mode: screen;
+    opacity: .045;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
   /* touch screens: drop the fixed blend layer, it repaints on every scroll */
@@ -529,7 +529,7 @@
   .reveal > .qbg { opacity: 1; transform: none; }
   .quote .qbg::before {
     content: ""; position: absolute; inset: 0;
-    background-image: url('img/muti-beitan-duet.jpg');
+    background-image: url('img/muti-beitan-duet-1440.jpg');
     background-size: cover; background-position: 50% 16%;
     filter: grayscale(1) sepia(.42) saturate(1.15) brightness(.62) contrast(1.02);
     transform: scale(1.04);
@@ -804,10 +804,10 @@
     text-wrap: pretty;
   }
   /* image layers (degrade gracefully behind label) */
-  .plate.press .img { background-image: url('img/lofficiel-cover-ru.jpg'); background-size: contain; background-repeat:no-repeat; background-color:#18223A; }
-  .plate.civic .img { background-image: url('img/nato-bw.jpg'); background-position: center 35%; }
-  .plate.riga .img  { background-image: url('img/riga-bourse-stradivari-exhibit.jpg'); background-position: center 30%; }
-  .plate.villa .img { background-image: url('img/villa-balbianello-conversation.jpg'); background-size: contain; background-repeat:no-repeat; background-color:#18223A; }
+  .plate.press .img { background-image: url('img/lofficiel-cover-ru-900.jpg'); background-size: contain; background-repeat:no-repeat; background-color:#18223A; }
+  .plate.civic .img { background-image: url('img/nato-bw-900.jpg'); background-position: center 35%; }
+  .plate.riga .img  { background-image: url('img/riga-bourse-stradivari-exhibit-900.jpg'); background-position: center 30%; }
+  .plate.villa .img { background-image: url('img/villa-balbianello-conversation-900.jpg'); background-size: contain; background-repeat:no-repeat; background-color:#18223A; }
 
   /* ── Listen & watch ─────────────────────────── */
   .listen {
@@ -896,6 +896,7 @@
   .lenis.lenis-stopped { overflow: clip; }
   .lenis.lenis-smooth iframe { pointer-events: none; }
   .js-motion .reveal > * { transition: none; }          /* GSAP owns opacity and transform */
+  html.hero-off .stage .photo-img { animation-play-state: paused; }   /* the slow zoom sleeps off screen */
   .stage .name .w  { display: inline-block; white-space: nowrap; }
   .stage .name .ch { display: inline-block; will-change: transform; }
   /* Pinned "practices": the section fills the viewport only while the pin is active (desktop, fine pointer) */
@@ -1609,7 +1610,7 @@
     gsap.ticker.lagSmoothing(0);
     // No automatic re-measure when the tab regains visibility: a refresh in the middle of a Lenis glide
     // briefly resets the scroll position. Resize and load still re-measure.
-    ScrollTrigger.config({ autoRefreshEvents: 'DOMContentLoaded,load,resize' });
+    ScrollTrigger.config({ autoRefreshEvents: 'DOMContentLoaded,load,resize', ignoreMobileResize: true });
 
     // 1. Lenis smooth scroll, driven by the GSAP ticker so ScrollTrigger stays in step.
     //    Low lerp = long glide; touch screens keep native scrolling.
@@ -1652,26 +1653,74 @@
         onUpdate: (self) => { heroImg.style.translate = '0px ' + (48 * self.progress).toFixed(2) + 'px'; }
       });
 
-      // Pinned practices: the section holds for ~1.2 screens while focus moves Cellist → Foundation → Advisory,
-      // then all three read at full strength before the page moves on
+      // Pinned practices: the section holds for ~1.2 screens while focus moves Cellist -> Foundation -> Advisory,
+      // then all three read at full strength before the page moves on. The cursor also focuses: hovering (or
+      // tabbing into) a column brings it forward, whatever the scroll step is. Each column shows
+      // max(scroll focus, cursor focus), written straight to style (no per-frame tween objects).
       const sec = document.querySelector('.pillars');
-      const cols = [...sec.querySelectorAll('.pillar')].map((c) => [...c.children]);
+      const cols = [...sec.querySelectorAll('.pillar')];
+      const kids = cols.map((c) => [...c.children]);
       if (cols.length === 3) {
         sec.classList.add('is-pinned');
-        gsap.set([...cols[1], ...cols[2]], { opacity: 0.35 });
-        const tl = gsap.timeline({
-          defaults: { ease: 'sine.inOut' },
-          scrollTrigger: { trigger: sec, start: 'top top', end: '+=120%', pin: true, scrub: true, anticipatePin: 1, refreshPriority: 1 }
+        const hover = cols.map(() => ({ v: 0 }));
+        const scrollFocus = [1, 0, 0];
+        const ease = (x) => 0.5 - 0.5 * Math.cos(Math.PI * Math.min(1, Math.max(0, x)));   // sine.inOut
+        const ramp = (t, a, b) => ease((t - a) / (b - a));
+        const render = () => sec.classList.contains('is-pinned') && kids.forEach((k, i) => {   // no-op after the desktop layer is torn down
+          const f = Math.max(scrollFocus[i], hover[i].v);
+          k.forEach((el) => { el.style.opacity = (0.35 + 0.65 * f).toFixed(3); });
+          k[0].style.translate = '0px ' + (-6 * hover[i].v).toFixed(2) + 'px';              // the heading lifts a little
         });
-        tl.to(cols[0], { opacity: 0.35, duration: 0.4 }, 0.8)
-          .to(cols[1], { opacity: 1,    duration: 0.4 }, 0.8)
-          .to(cols[1], { opacity: 0.35, duration: 0.4 }, 2.0)
-          .to(cols[2], { opacity: 1,    duration: 0.4 }, 2.0)
-          .to([...cols[0], ...cols[1]], { opacity: 1, duration: 0.6 }, 3.2)
-          .to({}, { duration: 0.2 }, 3.8);
-        pinST = tl.scrollTrigger;
+        const setProgress = (p) => {
+          const t = p * 3.8, end = ramp(t, 3.2, 3.8);                                       // same schedule as before
+          scrollFocus[0] = Math.max(1 - ramp(t, 0.8, 1.2), end);
+          scrollFocus[1] = Math.max(ramp(t, 0.8, 1.2) * (1 - ramp(t, 2.0, 2.4)), end);
+          scrollFocus[2] = Math.max(ramp(t, 2.0, 2.4), end);
+          render();
+        };
+        const focus = (i, to, dur) => gsap.to(hover[i], { v: to, duration: dur, ease: 'sine.out', overwrite: true, onUpdate: render });
+        const cleanups = [];
+        cols.forEach((c, i) => {
+          const on = () => focus(i, 1, 0.6), off = () => focus(i, 0, 0.9);
+          c.addEventListener('mouseenter', on); c.addEventListener('mouseleave', off);
+          c.addEventListener('focusin', on);    c.addEventListener('focusout', off);
+          cleanups.push(() => { c.removeEventListener('mouseenter', on); c.removeEventListener('mouseleave', off);
+                                c.removeEventListener('focusin', on);    c.removeEventListener('focusout', off); });
+        });
+        pinST = ScrollTrigger.create({
+          trigger: sec, start: 'top top', end: '+=120%', pin: true, anticipatePin: 1, refreshPriority: 1,
+          onUpdate: (self) => setProgress(self.progress), onRefresh: (self) => setProgress(self.progress)
+        });
+        setProgress(0);
+        return () => {
+          cleanups.forEach((fn) => fn());
+          kids.flat().forEach((el) => { el.style.opacity = ''; el.style.translate = ''; });
+          sec.classList.remove('is-pinned');
+          document.querySelector('.stage .photo-img').style.translate = '';
+          pinST = null;
+        };
       }
       return () => { document.querySelector('.pillars').classList.remove('is-pinned'); document.querySelector('.stage .photo-img').style.translate = ''; pinST = null; };
+    });
+
+    //     Touch screens and narrow windows: no pin. Each practice comes forward while it crosses the middle of
+    //     the screen and rests at 55% elsewhere (a scroll reaction without taking over the scroll).
+    motionMM.add('not all and (min-width: 921px) and (hover: hover) and (pointer: fine) and (min-height: 640px)', () => {
+      document.querySelectorAll('.pillar').forEach((col) => {
+        const kids = [...col.children];
+        gsap.set(kids, { opacity: 0.55 });
+        ScrollTrigger.create({
+          trigger: col, start: 'top 72%', end: 'bottom 38%',
+          onToggle: (self) => gsap.to(kids, { opacity: self.isActive ? 1 : 0.55, duration: 0.8, ease: 'sine.inOut', overwrite: true })
+        });
+      });
+    });
+
+    // The hero zoom sleeps while the hero is off screen
+    ScrollTrigger.create({
+      trigger: '.stage', start: 'top top', end: 'bottom top',
+      onUpdate: (self) => root.classList.toggle('hero-off', self.progress >= 1),
+      onRefresh: (self) => root.classList.toggle('hero-off', self.progress >= 1)
     });
 
     // 2. Hero title: letters rise out of a mask, ~1.1 s in total
@@ -1738,6 +1787,15 @@
         });
       });
     });
+
+    // Decode the photos before their curtain opens: decoding a 900 px JPEG in the middle of the reveal
+    // is what makes the first frames stutter.
+    const idle = window.requestIdleCallback || ((fn) => setTimeout(fn, 400));
+    window.addEventListener('load', () => idle(() => {
+      const urls = [...document.querySelectorAll('.plate .img')]
+        .map((el) => (getComputedStyle(el).backgroundImage.match(/url\(["']?([^"')]+)["']?\)/) || [])[1]).filter(Boolean);
+      urls.forEach((u) => { const im = new Image(); im.src = u; if (im.decode) im.decode().catch(() => {}); });
+    }));
 
     window.addEventListener('load', () => ScrollTrigger.refresh());
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => ScrollTrigger.refresh());
