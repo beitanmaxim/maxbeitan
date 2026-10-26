@@ -291,10 +291,19 @@
   .topbar.docked .navtoggle span { background: var(--text); }
   .topbar.docked .themetoggle { color: var(--platinum); }
   html[data-theme="light"] .topbar.docked .themetoggle { color: var(--muted); }
-  /* Brand mark: the navy seal reads on a photo, on cream and on navy; the old gold "B" vanished on all three */
-  .topbar .brand { display: inline-flex; align-items: center; padding: 2px 0; }
-  .topbar .brand img { width: 44px; height: 44px; display: block; filter: drop-shadow(0 2px 10px rgba(0,0,0,.35)); transition: width .4s ease, height .4s ease; }
-  .topbar.docked .brand img { width: 36px; height: 36px; filter: none; }
+  /* Brand mark: the original "M B" lettering, made clearer. Larger and heavier than before, a brighter gold for
+     the B, and a soft shadow so both letters hold up on the hero photo. Docked, it follows the theme. */
+  .topbar .brand {
+    font-family: var(--serif); font-weight: 600; font-size: 26px; line-height: 1;
+    letter-spacing: .2em; color: #FAF8F5;
+    display: inline-flex; align-items: center; gap: .16em; padding: 4px 0;
+    text-shadow: 0 1px 14px rgba(8,12,24,.75), 0 0 3px rgba(8,12,24,.5);
+    transition: font-size .4s ease, color .4s ease;
+  }
+  .topbar .brand b { color: #E6C98C; font-weight: 600; }
+  .topbar.docked .brand { font-size: 23px; color: var(--text); text-shadow: none; }
+  .topbar.docked .brand b { color: #C9A56A; }                              /* dark view: gold, a step lighter than the page accent */
+  html[data-theme="light"] .topbar.docked .brand b { color: var(--accent); }
   .topbar nav { display: flex; gap: 34px; }
   .topbar nav a {
     position: relative;
@@ -1088,7 +1097,7 @@
 
 <!-- ────────── TOP BAR ────────── -->
 <header class="topbar" id="topbar">
-  <a class="brand" href="#top" aria-label="Max Beitan, back to the top"><img src="img/mb-monogram.svg" width="44" height="44" alt="" /></a>
+  <a class="brand" href="#top" aria-label="Max Beitan, back to the top">M<b>B</b></a>
   <nav id="nav" data-lenis-prevent>
     <a href="#cellist">Cellist</a>
     <a href="#foundation">Foundation</a>
