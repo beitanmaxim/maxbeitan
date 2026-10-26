@@ -275,7 +275,7 @@
   }
   .topbar::before {
     content:""; position:absolute; left:0; right:0; top:0; height:200px;
-    background: linear-gradient(180deg, var(--topbar-grad) 0%, rgba(0,0,0,0) 100%);
+    background: linear-gradient(180deg, rgba(10,16,30,.66) 0%, rgba(10,16,30,.3) 55%, rgba(10,16,30,0) 100%);   /* same in both views: the bar text over the hero is light */
     pointer-events:none; z-index:-1;
     transition: opacity .4s ease;
   }
@@ -287,24 +287,23 @@
     border-bottom: 1px solid var(--rule);
   }
   /* Over the hero photo the bar text stays light in BOTH views; once docked it follows the theme */
-  .topbar.docked .brand { color: var(--text); }
   .topbar.docked nav a { color: var(--platinum); }
   .topbar.docked .navtoggle span { background: var(--text); }
   .topbar.docked .themetoggle { color: var(--platinum); }
   html[data-theme="light"] .topbar.docked .themetoggle { color: var(--muted); }
-  .topbar .brand {
-    font-family: var(--serif); font-weight: 500; font-size: 18px;
-    letter-spacing: .26em; text-transform: uppercase; color: #FAF8F5;
-    display: inline-flex; align-items: center; gap: .5em;
-  }
-  .topbar .brand b { color: var(--accent); font-weight: 500; }
+  /* Brand mark: the navy seal reads on a photo, on cream and on navy; the old gold "B" vanished on all three */
+  .topbar .brand { display: inline-flex; align-items: center; padding: 2px 0; }
+  .topbar .brand img { width: 44px; height: 44px; display: block; filter: drop-shadow(0 2px 10px rgba(0,0,0,.35)); transition: width .4s ease, height .4s ease; }
+  .topbar.docked .brand img { width: 36px; height: 36px; filter: none; }
   .topbar nav { display: flex; gap: 34px; }
   .topbar nav a {
     position: relative;
-    font-family: var(--sans); font-weight: 300; font-size: 12px;
-    letter-spacing: .26em; text-transform: uppercase; color: #C9C5BC;
+    font-family: var(--sans); font-weight: 400; font-size: 12px;
+    letter-spacing: .24em; text-transform: uppercase; color: #F4F1EA;
+    text-shadow: 0 1px 12px rgba(8,12,24,.7), 0 0 2px rgba(8,12,24,.45);
     padding: 6px 0;
   }
+  .topbar.docked nav a { text-shadow: none; }
   .topbar nav a::after {
     content:""; position:absolute; left:0; right:100%; bottom:0; height:1px;
     background: var(--accent); transition: right .35s cubic-bezier(.2,.7,.2,1);
@@ -531,16 +530,17 @@
     content: ""; position: absolute; inset: 0;
     background-image: url('img/muti-beitan-duet-1440.jpg');
     background-size: cover; background-position: 50% 16%;
-    filter: grayscale(1) sepia(.42) saturate(1.15) brightness(.62) contrast(1.02);
+    filter: grayscale(.18) sepia(.3) saturate(1.1) brightness(.76) contrast(1.02);   /* warm colour, not black and white */
     transform: scale(1.04);
   }
   .quote .qbg::after {
     content: ""; position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 74% 56% at 50% 50%, rgba(17,26,46,.4), rgba(17,26,46,.6) 82%),
+      radial-gradient(ellipse 60% 50% at 82% 8%, rgba(194,162,105,.22), rgba(194,162,105,0) 70%),   /* warm light from the upper right */
+      radial-gradient(ellipse 74% 56% at 50% 50%, rgba(17,26,46,.3), rgba(17,26,46,.5) 82%),
       linear-gradient(180deg,
-        #111A2E 0%, rgba(17,26,46,.72) 10%, rgba(17,26,46,.3) 28%,
-        rgba(17,26,46,.24) 66%, rgba(17,26,46,.62) 88%, #111A2E 100%);
+        #111A2E 0%, rgba(17,26,46,.6) 10%, rgba(17,26,46,.18) 28%,
+        rgba(17,26,46,.16) 66%, rgba(17,26,46,.55) 88%, #111A2E 100%);
   }
   /* settle from photo-black back into the page bg (cream in light view) without a hard edge */
   .quote.has-bg { border-bottom: none; }
@@ -556,6 +556,20 @@
   .quote.has-bg cite { color: #D6D2C9; text-shadow: 0 1px 10px rgba(0,0,0,.7); }
   .quote.has-bg cite em { color: #EDE7DA; }
   .quote.has-bg::before { opacity: .34; }
+
+  /* ── Quote, light view: a cream wash over the photo instead of a night-time veil, dark text ── */
+  html[data-theme="light"] .quote.has-bg { background: var(--bg-soft); }
+  html[data-theme="light"] .quote .qbg::before { filter: grayscale(.12) sepia(.22) saturate(.9) brightness(1.1) contrast(.92); opacity: .62; }
+  html[data-theme="light"] .quote .qbg::after {
+    background:
+      radial-gradient(ellipse 72% 48% at 50% 50%, rgba(250,248,245,.74), rgba(250,248,245,.3) 85%),
+      linear-gradient(180deg, var(--bg) 0%, rgba(250,248,245,.55) 12%, rgba(250,248,245,.1) 32%,
+        rgba(250,248,245,.1) 64%, rgba(250,248,245,.6) 88%, var(--bg) 100%);
+  }
+  html[data-theme="light"] .quote.has-bg q { color: var(--text); text-shadow: 0 0 26px rgba(250,248,245,.9), 0 0 6px rgba(250,248,245,.7); }
+  html[data-theme="light"] .quote.has-bg cite { color: var(--platinum); text-shadow: 0 0 14px rgba(250,248,245,.9); }
+  html[data-theme="light"] .quote.has-bg cite em { color: var(--text); }
+  html[data-theme="light"] .quote.has-bg::before { color: var(--accent); opacity: .5; }
   .quote::before {
     content: "\201C";
     display:block;
@@ -996,22 +1010,35 @@
 
   /* ── Press / partner logos ──────────────────── */
   .logo-wall {
-    display: flex; justify-content: center; flex-wrap: wrap; gap: 34px;
-    max-width: 1000px; margin: 44px auto 0;
+    display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 22px;
+    max-width: 1100px; margin: 44px auto 0;
   }
-  .logo-item { display: flex; flex-direction: column; align-items: center; }
+  .logo-item { display: flex; flex-direction: column; align-items: stretch; min-width: 0; }
   .logo-tile {
-    background: #fff; border-radius: 3px; padding: 28px 40px;
+    background: #fff; border: 1px solid var(--rule); border-radius: 3px;
+    aspect-ratio: 8 / 5; padding: 14px;
     display: flex; align-items: center; justify-content: center;
-    min-width: 210px; min-height: 104px;
-    box-shadow: 0 16px 44px rgba(0,0,0,.34);
+    box-shadow: 0 14px 36px rgba(0,0,0,.3);
     transition: transform .5s cubic-bezier(.2,.7,.2,1);
   }
-  .logo-item:hover .logo-tile { transform: translateY(-5px); }
-  .logo-tile img { max-width: 184px; max-height: 58px; width: auto; height: auto; display: block; }
-  .logo-cap {
-    margin-top: 18px; font-family: var(--sans); font-weight: 300; font-size: 12px;
-    letter-spacing: .24em; text-transform: uppercase; color: var(--muted);
+  html[data-theme="light"] .logo-tile { box-shadow: 0 10px 28px rgba(58,42,28,.12); }
+  .logo-item:hover .logo-tile { transform: translateY(-4px); }
+  /* every mark gets the same box; the image fills it as far as its own proportions allow */
+  .logo-tile img { max-width: 80%; max-height: 74%; width: auto; height: auto; object-fit: contain; display: block; }
+  .logo-cap { margin-top: 14px; display: flex; flex-direction: column; align-items: center; gap: 5px; text-align: center; }
+  .logo-cap .lc-role { font-family: var(--sans); font-weight: 400; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); }
+  .logo-cap .lc-name { font-family: var(--serif); font-weight: 400; font-size: 17px; line-height: 1.25; letter-spacing: 0; text-transform: none; color: var(--platinum); text-wrap: balance; }
+  @media (max-width: 1000px) {
+    .logo-wall { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 24px 20px; }
+    .logo-item { grid-column: span 2; }
+    .logo-item:nth-child(4) { grid-column: 2 / span 2; }     /* second row of two, centred */
+    .logo-item:nth-child(5) { grid-column: 4 / span 2; }
+  }
+  @media (max-width: 620px) {
+    .logo-wall { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 14px; }
+    .logo-item, .logo-item:nth-child(4), .logo-item:nth-child(5) { grid-column: auto; }
+    .logo-item:nth-child(5) { grid-column: 1 / -1; justify-self: center; width: calc(50% - 7px); }
+    .logo-cap .lc-name { font-size: 16px; }
   }
 
   /* ── Booking enquiry form ───────────────────── */
@@ -1061,7 +1088,7 @@
 
 <!-- ────────── TOP BAR ────────── -->
 <header class="topbar" id="topbar">
-  <a class="brand" href="#top">M<b>B</b></a>
+  <a class="brand" href="#top" aria-label="Max Beitan, back to the top"><img src="img/mb-monogram.svg" width="44" height="44" alt="" /></a>
   <nav id="nav" data-lenis-prevent>
     <a href="#cellist">Cellist</a>
     <a href="#foundation">Foundation</a>
@@ -1401,6 +1428,12 @@
     .audio-meta{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(236,239,246,.62)}
     .audio-time{flex:0 0 auto;font-size:.78rem;color:rgba(236,239,246,.6);font-variant-numeric:tabular-nums;
       min-width:92px;text-align:right;letter-spacing:.04em}
+    html[data-theme="light"] .audio-btn{border-color:rgba(138,106,46,.55);background:rgba(250,248,245,.7);color:var(--text)}
+    html[data-theme="light"] .audio-btn:hover{border-color:var(--accent);background:rgba(250,248,245,.95)}
+    html[data-theme="light"] .audio-title{color:var(--text)}
+    html[data-theme="light"] .audio-meta,html[data-theme="light"] .audio-time{color:var(--muted)}
+    html[data-theme="light"] .audio-ico::before{border-left-color:var(--accent)}
+    html[data-theme="light"] .audio-btn[data-state="playing"] .audio-ico::after{border-color:var(--accent)}
   </style>
   <!-- Vocalise player moved to the Muti pull-quote section (it references Vocalise) -->
   <script>
@@ -1442,24 +1475,24 @@
   <p class="eyebrow" style="margin-top:64px;">Featured in <span class="mark">·</span> partners &amp; patrons</p>
   <div class="logo-wall reveal stagger">
     <figure class="logo-item">
-      <div class="logo-tile"><img src="img/press-lofficiel.png" alt="L'Officiel Hommes" loading="lazy" /></div>
-      <figcaption class="logo-cap">Cover feature · L'Officiel Hommes</figcaption>
+      <div class="logo-tile"><img src="img/press-lofficiel-trim.png" alt="L'Officiel Hommes" loading="lazy" /></div>
+      <figcaption class="logo-cap"><span class="lc-role">Cover feature</span><span class="lc-name">L'Officiel Hommes</span></figcaption>
     </figure>
     <figure class="logo-item">
-      <div class="logo-tile"><img src="img/partner-riga-bourse.jpg" alt="Art Museum Rīga Bourse" loading="lazy" /></div>
-      <figcaption class="logo-cap">Curatorial partner · Art Museum Rīga Bourse</figcaption>
+      <div class="logo-tile"><img src="img/partner-riga-bourse-trim.jpg" alt="Art Museum Rīga Bourse" loading="lazy" /></div>
+      <figcaption class="logo-cap"><span class="lc-role">Curatorial partner</span><span class="lc-name">Art Museum Rīga Bourse</span></figcaption>
     </figure>
     <figure class="logo-item">
       <div class="logo-tile"><img src="img/partner-fai.png" alt="FAI — Fondo per l'Ambiente Italiano" loading="lazy" /></div>
-      <figcaption class="logo-cap">Partner · FAI — The National Trust for Italy</figcaption>
+      <figcaption class="logo-cap"><span class="lc-role">Partner</span><span class="lc-name">FAI · The National Trust for Italy</span></figcaption>
     </figure>
     <figure class="logo-item">
       <div class="logo-tile"><img src="img/partner-lac.png" alt="LAC Lugano Arte e Cultura" loading="lazy" /></div>
-      <figcaption class="logo-cap">Partner · LAC Lugano Arte e Cultura</figcaption>
+      <figcaption class="logo-cap"><span class="lc-role">Partner</span><span class="lc-name">LAC Lugano Arte e Cultura</span></figcaption>
     </figure>
     <figure class="logo-item">
       <div class="logo-tile"><img src="img/partner-florian-leonhard.png" alt="Florian Leonhard Fine Violins" loading="lazy" /></div>
-      <figcaption class="logo-cap">Partner · Florian Leonhard Fine Violins</figcaption>
+      <figcaption class="logo-cap"><span class="lc-role">Partner</span><span class="lc-name">Florian Leonhard Fine Violins</span></figcaption>
     </figure>
   </div>
   <p class="press-foot">Full press archive · <a href="mailto:pr@maxbeitan.com?subject=Press%20archive">on request</a></p>
