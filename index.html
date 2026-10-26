@@ -896,6 +896,11 @@
   .lenis.lenis-stopped { overflow: clip; }
   .lenis.lenis-smooth iframe { pointer-events: none; }
   .js-motion .reveal > * { transition: none; }          /* GSAP owns opacity and transform */
+  /* Photo curtain with a soft edge: the mask is solid up to --wipe, then fades out over 22% of the width */
+  .js-motion [data-mask].wiping {
+    -webkit-mask-image: linear-gradient(90deg, #000 var(--wipe, 100%), transparent calc(var(--wipe, 100%) + 22%));
+            mask-image: linear-gradient(90deg, #000 var(--wipe, 100%), transparent calc(var(--wipe, 100%) + 22%));
+  }
   html.hero-off .stage .photo-img { animation-play-state: paused; }   /* the slow zoom sleeps off screen */
   .stage .name .w  { display: inline-block; white-space: nowrap; }
   .stage .name .ch { display: inline-block; will-change: transform; }
@@ -1774,13 +1779,23 @@
         scrollTrigger: { trigger: el, start: 'top 88%', once: true }
       });
 
-      // Photos: a curtain wipes left to right while the image settles from 1.16 to 1 (no overshoot)
+      // Photos: a curtain wipes left to right with a soft edge (gradient mask) while the image settles from
+      // 1.16 to 1 (no overshoot). Browsers without mask-image get the hard clip-path wipe.
+      const softEdge = window.CSS && CSS.supports && (CSS.supports('mask-image', 'linear-gradient(#000,#000)') || CSS.supports('-webkit-mask-image', 'linear-gradient(#000,#000)'));
       masks.forEach((m, i) => {
         const delay = window.innerWidth > 920 ? i * 0.14 : 0;
         const st = { trigger: m, start: 'top 90%', once: true };
-        gsap.fromTo(m, { clipPath: 'inset(0% 100% 0% 0%)' }, {
-          clipPath: 'inset(0% 0% 0% 0%)', duration: 1.5, ease: 'power3.inOut', delay, clearProps: 'clipPath', scrollTrigger: st
-        });
+        if (softEdge) {
+          m.classList.add('wiping');
+          gsap.fromTo(m, { '--wipe': '-22%' }, {
+            '--wipe': '100%', duration: 1.5, ease: 'power3.inOut', delay, scrollTrigger: st,
+            onComplete: () => { m.classList.remove('wiping'); m.style.removeProperty('--wipe'); }
+          });
+        } else {
+          gsap.fromTo(m, { clipPath: 'inset(0% 100% 0% 0%)' }, {
+            clipPath: 'inset(0% 0% 0% 0%)', duration: 1.5, ease: 'power3.inOut', delay, clearProps: 'clipPath', scrollTrigger: st
+          });
+        }
         const inner = m.querySelector('img, .img');
         if (inner) gsap.fromTo(inner, { scale: 1.16 }, {
           scale: 1, duration: 2.2, ease: 'power2.out', delay, clearProps: 'scale', scrollTrigger: { ...st }
@@ -1811,7 +1826,8 @@
       if (lenis) { lenis.destroy(); lenis = null; }
       if (motionMM) { motionMM.revert(); motionMM = null; }
       ScrollTrigger.getAll().forEach((st) => st.kill(true));
-      gsap.set('.reveal > *, .stage .name, .stage .name *, .stage .photo-img, .pillar > *, [data-mask] img, [data-mask] .img', { clearProps: 'all' });
+      gsap.set('.reveal > *, .stage .name, .stage .name *, .stage .photo-img, .pillar > *, [data-mask], [data-mask] img, [data-mask] .img', { clearProps: 'all' });
+      document.querySelectorAll('.wiping').forEach((el) => el.classList.remove('wiping'));
       revealWithObserver();
     }
   } else {
