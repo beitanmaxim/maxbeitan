@@ -1,9 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://maxbeitan.com/</loc>
-    <lastmod>2026-06-02</lastmod>
+    <lastmod>2026-11-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://maxbeitan.com/events/2026-12-06-max-beitan-40-riga/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://maxbeitan.com/events/2026-12-06-max-beitan-40-riga/" />
+    <xhtml:link rel="alternate" hreflang="lv" href="https://maxbeitan.com/lv/pasakumi/2026-12-06-maksims-beitans-40-riga/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://maxbeitan.com/ru/sobytiya/2026-12-06-maksim-beitan-40-riga/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://maxbeitan.com/events/2026-12-06-max-beitan-40-riga/" />
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://maxbeitan.com/lv/pasakumi/2026-12-06-maksims-beitans-40-riga/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://maxbeitan.com/events/2026-12-06-max-beitan-40-riga/" />
+    <xhtml:link rel="alternate" hreflang="lv" href="https://maxbeitan.com/lv/pasakumi/2026-12-06-maksims-beitans-40-riga/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://maxbeitan.com/ru/sobytiya/2026-12-06-maksim-beitan-40-riga/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://maxbeitan.com/events/2026-12-06-max-beitan-40-riga/" />
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://maxbeitan.com/ru/sobytiya/2026-12-06-maksim-beitan-40-riga/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://maxbeitan.com/events/2026-12-06-max-beitan-40-riga/" />
+    <xhtml:link rel="alternate" hreflang="lv" href="https://maxbeitan.com/lv/pasakumi/2026-12-06-maksims-beitans-40-riga/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://maxbeitan.com/ru/sobytiya/2026-12-06-maksim-beitan-40-riga/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://maxbeitan.com/events/2026-12-06-max-beitan-40-riga/" />
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.8</priority>
   </url>
 </urlset>
