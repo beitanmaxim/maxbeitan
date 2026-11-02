@@ -250,6 +250,7 @@
   h1{font-family:var(--serif);font-weight:300;font-size:clamp(46px,6.4vw,92px);
     line-height:1.02;margin:0 0 14px;letter-spacing:.01em}
   h1 em{font-style:italic;color:var(--gold);display:block}
+  h1 .who{display:block;font-size:.42em;letter-spacing:.16em;text-transform:uppercase;line-height:1.2;margin-bottom:.35em}
   .sub{font-size:15px;color:var(--muted);margin:0 0 34px}
   .duo{display:flex;flex-wrap:wrap;gap:14px}
   .cta{display:inline-block;border:1px solid var(--gold);color:var(--cream);padding:16px 30px;
@@ -305,6 +306,11 @@
     border-radius:50%;transform:translateY(-50%);background:var(--gold);
     transition:transform .45s cubic-bezier(.2,.7,.2,1)}
   html[data-theme="light"] .tt span::after{transform:translate(22px,-50%)}
+  .bar-r{display:flex;align-items:center;gap:10px}
+  .lsw{display:flex;background:rgba(17,26,46,.55);border-radius:999px;padding:4px;backdrop-filter:blur(6px)}
+  .lsw a{font-size:11px;letter-spacing:.16em;color:#E6E2DA;text-decoration:none;padding:7px 11px;border-radius:999px;line-height:1}
+  .lsw a[href]:hover{color:#F4F1EA;background:rgba(255,255,255,.08)}
+  .lsw a[aria-current]{color:#111A2E;background:#B08D57}
   @media(max-width:860px){
     .hero{grid-template-columns:1fr;min-height:0}
     .hero figure{grid-column:1;grid-row:1;aspect-ratio:4/5;max-height:76vh}
@@ -327,8 +333,11 @@
 
 <div class="bar">
   <a class="home" href="../../../" aria-label="Sākums">MB</a>
-  <button class="tt" id="tt" type="button" role="switch" aria-checked="false"
-          aria-label="Tumšs / gaišs"><span></span></button>
+  <div class="bar-r">
+    <nav class="lsw" aria-label="Language"><a href="https://maxbeitan.com/events/2026-12-06-max-beitan-40-riga/" hreflang="en" lang="en" aria-label="English">EN</a><a aria-current="page">LV</a><a href="https://maxbeitan.com/ru/sobytiya/2026-12-06-maksim-beitan-40-riga/" hreflang="ru" lang="ru" aria-label="По-русски">RU</a></nav>
+    <button class="tt" id="tt" type="button" role="switch" aria-checked="false"
+            aria-label="Tumšs / gaišs"><span></span></button>
+  </div>
 </div>
 
 <header class="hero">
@@ -338,8 +347,8 @@
   </figure>
   <div class="lede">
     <p class="kicker">Rīga &middot; 2026. gada 6. decembris &middot; Jubilejas koncerts</p>
-    <h1>Jubilejas galā <em>koncerts “40”</em></h1>
-    <p class="sub">Maksims Beitāns, čells, kopā ar draugiem un kolēģiem</p>
+    <h1><span class="who">Maksims Beitāns</span>Jubilejas galā <em>koncerts “40”</em></h1>
+    <p class="sub">Čells, kopā ar draugiem un kolēģiem</p>
     <div class="duo">
       <a class="cta" href="https://tixfox.co/e/gA4QFmC4Fe" target="_blank" rel="noopener noreferrer" aria-label="Pirkt TixFox, 45 EUR (atveras jaunā cilnē)" data-box="tixfox-hero">Pirkt TixFox<small>45 EUR</small></a>
       <a class="cta" href="https://www.bilesuserviss.lv/ru/tickets/3UHHQHMCIQ/maksims-beitans-jubilejas-koncerts-40?utm_source=maxbeitan&amp;utm_medium=site&amp;utm_campaign=gala40-20261206&amp;utm_content=lv" target="_blank" rel="noopener noreferrer" aria-label="Pirkt Biļešu Serviss, 47 EUR (atveras jaunā cilnē)" data-box="bilesuserviss-hero">Pirkt Biļešu Serviss<small>47 EUR</small></a>
@@ -398,7 +407,7 @@
 
   <section class="gift" aria-labelledby="gift-h">
     <h2 id="gift-h">Jubilejas dāvana ar paliekošu nozīmi</h2>
-    <p>Ja vēlaties sveikt Maksimu 40. dzimšanas dienā, lūdzam ziedus un dāvanas neatnest. Vislielākā dāvana būs atbalsts Beitan Music Foundation un tās ilgtermiņa darbam ar čellu un instrumentālajiem projektiem. Jebkura summa ir vērtīga. Lūdzam izmantot tikai zemāk norādītos Fonda rekvizītus.</p>
+    <p>Ja vēlaties sveikt Maksimu 40. dzimšanas dienā, ziedu un dāvanu vietā lūdzam atbalstīt Beitan Music Foundation un tās ilgtermiņa darbu ar čellu un instrumentālajiem projektiem. Tā būs vislielākā dāvana. Jebkura summa ir vērtīga. Lūdzam izmantot tikai zemāk norādītos Fonda rekvizītus.</p>
     <div class="bank">
       <dl>
         <dt>Saņēmējs</dt><dd>Beitan Music Foundation</dd>
