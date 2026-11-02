@@ -77,16 +77,25 @@
   "@graph": [
     {
       "@type": "MusicEvent",
-      "name": "Max Beitan — 40th Anniversary Gala",
-      "description": "Milestone jubilee celebration. Masterpieces and virtuoso transcriptions, with invited guest musicians from jazz, pop, classical and rock.",
-      "image": "https://maxbeitan.com/img/studio-tux-direct.jpg",
-      "startDate": "2026-12-06",
-      "endDate": "2026-12-06",
+      "@id": "https://maxbeitan.com/events/2026-12-06-max-beitan-40-riga/#event",
+      "name": "Max Beitan — 40th Anniversary Gala “40”",
+      "alternateName": ["Maksima Beitāna jubilejas galā koncerts “40”", "Макс Бейтан — юбилейный гала-концерт «40»"],
+      "description": "Max Beitan marks his 40th birthday on stage with friends and colleagues: Baroque music, virtuoso classics, opera, Argentine tango and jazz.",
+      "url": "https://maxbeitan.com/events/2026-12-06-max-beitan-40-riga/",
+      "image": ["https://maxbeitan.com/img/max-beitan-40-gala-og.jpg", "https://maxbeitan.com/img/max-beitan-40-cello.jpg"],
+      "startDate": "2026-12-06T18:00:00+02:00",
+      "doorTime": "2026-12-06T17:30:00+02:00",
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-      "location": { "@type": "Place", "name": "Grand Ballroom, Grand Hotel Kempinski Riga",
-        "address": { "@type": "PostalAddress", "addressLocality": "Riga", "addressCountry": "LV" } },
-      "performer": { "@type": "Person", "name": "Max Beitan", "url": "https://maxbeitan.com" }
+      "isAccessibleForFree": false,
+      "location": { "@type": "Place", "name": "Grand Hotel Kempinski Riga, Grand Ballroom",
+        "address": { "@type": "PostalAddress", "streetAddress": "Aspazijas bulvāris 22", "addressLocality": "Rīga", "addressCountry": "LV" } },
+      "performer": { "@type": "Person", "name": "Max Beitan", "url": "https://maxbeitan.com" },
+      "organizer": { "@type": "Organization", "name": "Beitan Music Foundation", "url": "https://beitanmusicfoundation.org" },
+      "offers": [
+        { "@type": "Offer", "name": "TixFox", "url": "https://tixfox.co/e/gA4QFmC4Fe", "price": "45.00", "priceCurrency": "EUR", "availability": "https://schema.org/InStock" },
+        { "@type": "Offer", "name": "Biļešu Serviss", "url": "https://www.bilesuserviss.lv/ru/tickets/3UHHQHMCIQ/maksims-beitans-jubilejas-koncerts-40", "price": "47.00", "priceCurrency": "EUR", "availability": "https://schema.org/InStock" }
+      ]
     },
     {
       "@type": "MusicEvent",
@@ -1161,19 +1170,26 @@
   .nextup .ttl{font-family:var(--serif);font-size:clamp(20px,3.4vw,27px);font-weight:400;
     color:var(--text);line-height:1.2}
   .nextup .ttl em{font-style:italic;color:var(--accent)}
+  a.ttl{text-decoration:none;border-bottom:1px solid transparent;transition:border-color .3s ease}
+  a.ttl:hover,a.ttl:focus-visible{border-color:var(--accent)}
+  .nextup .acts{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
   .nextup .meta{font-family:var(--sans);font-size:13px;letter-spacing:.05em;color:var(--muted)}
   .nextup .go{font-family:var(--sans);font-size:12px;letter-spacing:.2em;text-transform:uppercase;
     color:var(--text);text-decoration:none;border:1px solid var(--accent);
     padding:13px 26px;white-space:nowrap;transition:background .35s ease,color .35s ease}
-  .nextup .go:hover{background:var(--accent);color:var(--bg)}
+  .nextup .go:hover,.nextup .go:focus-visible{background:var(--accent);color:var(--bg)}
   @media(max-width:760px){.nextup-in{flex-direction:column;gap:10px}.nextup{padding:22px 20px}}
 </style>
 <section class="nextup" aria-label="Next concert" data-screen-label="Next concert">
   <div class="nextup-in">
     <span class="tag">Next concert</span>
-    <span class="ttl">40th Anniversary <em>Gala</em></span>
-    <span class="meta">Sun 6 December &middot; Grand Ballroom, Grand Hotel Kempinski Riga</span>
-    <a class="go" href="mailto:pr@maxbeitan.com?subject=40th%20Anniversary%20Gala%20RSVP">RSVP / Enquiries</a>
+    <a class="ttl" href="events/2026-12-06-max-beitan-40-riga/">40th Anniversary <em>Gala</em></a>
+    <span class="meta">Sun 6 December &middot; 18:00 &middot; Grand Ballroom, Grand Hotel Kempinski Riga</span>
+    <span class="acts">
+      <a class="go" href="events/2026-12-06-max-beitan-40-riga/">Programme</a>
+      <a class="go" href="https://tixfox.co/e/gA4QFmC4Fe" target="_blank" rel="noopener noreferrer" aria-label="Tickets via TixFox, 45 EUR (opens in a new tab)">TixFox</a>
+      <a class="go" href="https://www.bilesuserviss.lv/ru/tickets/3UHHQHMCIQ/maksims-beitans-jubilejas-koncerts-40?utm_source=maxbeitan&amp;utm_medium=site&amp;utm_campaign=gala40-20261206&amp;utm_content=home" target="_blank" rel="noopener noreferrer" aria-label="Tickets via Biļešu Serviss, 47 EUR (opens in a new tab)">Biļešu Serviss</a>
+    </span>
   </div>
 </section>
 
@@ -1365,10 +1381,10 @@
     <div class="cal-row">
       <div class="cal-date">Dec<b>06</b></div>
       <div class="cal-main">
-        <h3>40th Anniversary Gala</h3>
-        <p class="cal-desc">Milestone jubilee celebration. Masterpieces and virtuoso transcriptions, with invited guest musicians from jazz, pop, classical and rock.</p>
+        <h3><a class="cal-link" href="events/2026-12-06-max-beitan-40-riga/">40th Anniversary Gala</a></h3>
+        <p class="cal-desc">Max Beitan marks his 40th birthday on stage with friends and colleagues: Baroque music, virtuoso classics, opera, Argentine tango and jazz.</p>
         <div class="venue">Grand Ballroom &middot; Grand Hotel Kempinski Riga<span class="cal-status is-announced">Announced</span>
-          <a class="cal-tickets" href="mailto:pr@maxbeitan.com?subject=40th%20Anniversary%20Gala%20RSVP">RSVP / Enquiries <span aria-hidden="true">&rarr;</span></a>
+          <a class="cal-tickets" href="events/2026-12-06-max-beitan-40-riga/">Programme &amp; tickets <span aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
     </div>
